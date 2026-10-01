@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import time
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -11,6 +10,8 @@ import numpy as np
 import pandas as pd
 
 from pipeline.config import Config, load_config
+from pipeline.publication import atomic_output
+from pipeline.shutdown import graceful_shutdown
 from pipeline.paths import ensure_data_dirs, raw_dir
 
 RAW_COLUMNS = [
@@ -98,7 +99,8 @@ def write_batch(df: pd.DataFrame, dest_dir: Path, tick: int = 0) -> Path:
     dest_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_%f")
     path = dest_dir / f"orders_{stamp}_{tick:04d}.csv"
-    df.to_csv(path, index=False)
+    with atomic_output(path) as temporary:
+        df.to_csv(temporary, index=False)
     return path
 
 
@@ -122,11 +124,12 @@ def run_loop(cfg: Config | None = None, base: Path | None = None) -> None:
     cfg = cfg or load_config()
     ensure_data_dirs(base)
     tick = 0
-    print("DashBite order feed started")
-    while True:
-        run_once(cfg=cfg, base=base, tick=tick)
-        tick += 1
-        time.sleep(cfg.poll_interval_seconds)
+    with graceful_shutdown() as stop:
+        print("DashBite order feed started")
+        while not stop.requested:
+            run_once(cfg=cfg, base=base, tick=tick)
+            tick += 1
+            stop.wait(cfg.poll_interval_seconds)
 
 
 def main() -> None:

@@ -1,0 +1,13 @@
+# Allow only runtime source, metadata and the two inspection helpers.
+**
+!Dockerfile
+!requirements.txt
+!pipeline/
+!pipeline/**
+!scripts/
+!scripts/check_artifacts.py
+!scripts/check_persistence.py
+**/__pycache__/
+**/*.pyc
+**/.env*
+pipeline/prompts/

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import time
 from pathlib import Path
 
 import altair as alt
@@ -20,7 +19,7 @@ from pipeline.dashboard.quality_metrics import (
     field_failure_totals,
     throughput_summary,
 )
-from pipeline.paths import PROJECT_ROOT, features_dir, predictions_dir, quality_dir
+from pipeline.paths import features_dir, predictions_dir, quality_dir
 from pipeline.preprocess import QUALITY_LOG
 
 ACCENT = "#5B9BD5"
@@ -76,8 +75,8 @@ def _late_flag_claim(flag_ts: pd.DataFrame, overall_rate: float) -> str:
 
 
 def _failure_claim(ranked: pd.DataFrame) -> str:
-    if ranked.empty:
-        return "Field failures (none yet)"
+    if ranked.empty or ranked["failed_rows"].sum() == 0:
+        return "No field failures recorded"
     top = ranked.iloc[0]
     return f"{top['field']} causes the most preprocess failures"
 
@@ -143,15 +142,10 @@ def _failure_chart(ranked: pd.DataFrame) -> alt.Chart:
     )
 
 
-def main() -> None:
-    st.set_page_config(page_title="DashBite", layout="wide")
-    st.title("DashBite")
-    auto = st.sidebar.checkbox("Auto-refresh (15s)", value=True)
-
-    base = PROJECT_ROOT
-    features = load_features(base)
-    predictions = load_predictions(base)
-    quality = load_quality_log(base)
+def _render_model_pulse() -> None:
+    features = load_features()
+    predictions = load_predictions()
+    quality = load_quality_log()
     throughput = throughput_summary(quality)
     failures = field_failure_totals(quality)
     summary = score_summary(predictions)
@@ -169,8 +163,10 @@ def main() -> None:
     st.caption("Last 60 minutes of feature rows · orders per minute")
     if not volume_ts.empty:
         st.altair_chart(_volume_chart(volume_ts), width="stretch")
-    else:
+    elif quality.empty:
         st.info("No timestamped features yet — waiting for preprocess.")
+    else:
+        st.info("No timestamped features in the last 60 minutes.")
 
     flag_ts = late_flag_rate_over_time(predictions, features, recent_minutes=60)
     st.subheader(_late_flag_claim(flag_ts, summary["predicted_late_rate"]))
@@ -185,12 +181,19 @@ def main() -> None:
     st.caption("Corrupt / invalid fields caught in preprocess")
     if not ranked.empty and ranked["failed_rows"].sum() > 0:
         st.altair_chart(_failure_chart(ranked), width="stretch")
+    elif quality.empty:
+        st.info("No preprocessing results yet — waiting for preprocess.")
     else:
-        st.info("No field failures yet — waiting for preprocess.")
+        st.info("Preprocessing completed with no field failures recorded.")
 
-    if auto:
-        time.sleep(15)
-        st.rerun()
+
+def main() -> None:
+    st.set_page_config(page_title="DashBite", layout="wide")
+    st.title("DashBite")
+    auto = st.sidebar.checkbox("Auto-refresh (15s)", value=True)
+    # Browser-driven fragment reruns release the script thread between updates.
+    # A blocking sleep here can outlive Docker's shutdown grace period.
+    st.fragment(run_every=15 if auto else None)(_render_model_pulse)()
 
 
 if __name__ == "__main__":

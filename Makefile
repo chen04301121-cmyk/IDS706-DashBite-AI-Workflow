@@ -21,11 +21,17 @@ PIDS    := $(LOG_DIR)/pids
 
 .PHONY: help install test test-unit test-regression test-integration \
 	simulator preprocess train infer dashboard prompts prompts-static \
-	run stop status clean clean-data
+	run stop status clean clean-data \
+	docker-build docker-up docker-status docker-logs docker-stop docker-down docker-verify docker-verify-browser
 
 help:
 	@echo "DashBite Make targets"
 	@echo ""
+	@echo "  make docker-build/up      Build shared image / start five containers"
+	@echo "  make docker-status/logs   Show containers / follow logs"
+	@echo "  make docker-stop/down     Stop / remove containers, retaining data"
+	@echo "  make docker-verify        Isolated automated Docker checks (no live browser)"
+	@echo "  make docker-verify-browser  Same gate plus real-browser observation and stop"
 	@echo "  make install              Create .venv and install requirements"
 	@echo "  make test                 Run full pytest suite (unit+regression+integration)"
 	@echo "  make test-unit            Run unit tests only"
@@ -114,3 +120,28 @@ clean: clean-data
 	@rm -rf $(LOG_DIR) .pytest_cache
 	@find . -type d -name __pycache__ -not -path './.venv/*' -exec rm -rf {} + 2>/dev/null || true
 	@echo "Clean complete."
+
+# Independent of native installation and process/data lifecycle.
+docker-build:
+	docker compose build simulator
+
+docker-up:
+	docker compose up -d
+
+docker-status:
+	docker compose ps -a
+
+docker-logs:
+	docker compose logs -f
+
+docker-stop:
+	docker compose stop
+
+docker-down:
+	docker compose down
+
+docker-verify:
+	$(PYTHON) tests/docker_verify.py
+
+docker-verify-browser:
+	$(PYTHON) tests/docker_verify.py --browser

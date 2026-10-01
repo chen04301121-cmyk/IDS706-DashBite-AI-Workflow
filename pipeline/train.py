@@ -7,7 +7,6 @@ Does not import or call inference.
 from __future__ import annotations
 
 import json
-import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -18,6 +17,8 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
 from pipeline.config import Config, load_config
+from pipeline.publication import atomic_output
+from pipeline.shutdown import graceful_shutdown
 from pipeline.paths import ensure_data_dirs, features_dir, models_dir
 
 STATE_FILENAME = "train_state.json"
@@ -37,7 +38,8 @@ def load_state(base: Path | None = None) -> dict:
 
 def save_state(state: dict, base: Path | None = None) -> None:
     ensure_data_dirs(base)
-    _state_path(base).write_text(json.dumps(state, indent=2))
+    with atomic_output(_state_path(base)) as temporary:
+        temporary.write_text(json.dumps(state, indent=2))
 
 
 def load_all_features(base: Path | None = None) -> pd.DataFrame:
@@ -102,15 +104,20 @@ def write_checkpoint(
 ) -> Path:
     """Write a new timestamped checkpoint (never overwrite history)."""
     ensure_data_dirs(base)
-    stamp = stamp or datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    stamp = stamp or datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_%f")
     ckpt_path = models_dir(base) / f"checkpoint_{stamp}.joblib"
     metrics_path = models_dir(base) / f"metrics_{stamp}.json"
-    joblib.dump(
-        {"model": model, "feature_columns": FEATURE_COLUMNS, "checkpoint_id": stamp},
-        ckpt_path,
-    )
-    payload = {**metrics, "checkpoint_id": stamp, "feature_columns": FEATURE_COLUMNS}
-    metrics_path.write_text(json.dumps(payload, indent=2))
+    if ckpt_path.exists():
+        raise FileExistsError(f"Checkpoint already exists: {ckpt_path}")
+    # Publish metrics first; the final checkpoint name is the reader's signal.
+    with atomic_output(ckpt_path) as temporary:
+        joblib.dump(
+            {"model": model, "feature_columns": FEATURE_COLUMNS, "checkpoint_id": stamp},
+            temporary,
+        )
+        payload = {**metrics, "checkpoint_id": stamp, "feature_columns": FEATURE_COLUMNS}
+        with atomic_output(metrics_path) as metrics_temporary:
+            metrics_temporary.write_text(json.dumps(payload, indent=2))
     return ckpt_path
 
 
@@ -145,10 +152,11 @@ def maybe_train(cfg: Config | None = None, base: Path | None = None) -> Path | N
 def run_loop(cfg: Config | None = None, base: Path | None = None) -> None:
     cfg = cfg or load_config()
     ensure_data_dirs(base)
-    print("DashBite training started (independent write path)")
-    while True:
-        maybe_train(cfg=cfg, base=base)
-        time.sleep(cfg.poll_interval_seconds)
+    with graceful_shutdown() as stop:
+        print("DashBite training started (independent write path)")
+        while not stop.requested:
+            maybe_train(cfg=cfg, base=base)
+            stop.wait(cfg.poll_interval_seconds)
 
 
 def main() -> None:

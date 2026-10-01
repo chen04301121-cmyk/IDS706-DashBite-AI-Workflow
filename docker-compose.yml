@@ -1,0 +1,49 @@
+# Classroom foundation: docs/docker-k8s-guide.md, Part 1.
+x-common: &common
+  build: .
+  image: ${COMPOSE_PROJECT_NAME:-dashbite}:local
+  environment:
+    DATA_ROOT: ${DATA_ROOT:-/app/data}
+    TRAIN_EVERY_N_EVENTS: ${TRAIN_EVERY_N_EVENTS:-50}
+    BATCH_SIZE: ${BATCH_SIZE:-20}
+    POLL_INTERVAL_SECONDS: ${POLL_INTERVAL_SECONDS:-15}
+    RANDOM_SEED: ${RANDOM_SEED:-42}
+    CORRUPT_BATCH_RATE: ${CORRUPT_BATCH_RATE:-0.25}
+  volumes:
+    - type: volume
+      source: dashbite-data
+      target: ${DATA_ROOT:-/app/data}
+  stop_grace_period: 10s
+
+services:
+  simulator:
+    <<: *common
+    command: [python, -m, pipeline.simulator]
+  preprocess:
+    <<: *common
+    command: [python, -m, pipeline.preprocess]
+  train:
+    <<: *common
+    command: [python, -m, pipeline.train]
+  infer:
+    <<: *common
+    command: [python, -m, pipeline.infer]
+  dashboard:
+    <<: *common
+    command: [streamlit, run, pipeline/dashboard/app.py, --server.address, 0.0.0.0, --server.port, '8501', --server.headless, 'true']
+    volumes:
+      - type: volume
+        source: dashbite-data
+        target: ${DATA_ROOT:-/app/data}
+        read_only: true
+    ports:
+      - '127.0.0.1:${DASHBOARD_PORT:-8501}:8501'
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=2).read()"]
+      interval: 10s
+      timeout: 3s
+      start_period: 20s
+      retries: 3
+
+volumes:
+  dashbite-data:
