@@ -1,0 +1,26 @@
+[
+  {
+    "role": "architect",
+    "task_id": "01a0f527-1899-7d72-bf98-6eb096bcd26a",
+    "student_messages": 4,
+    "agent_messages_including_progress_and_questions": 14,
+    "bytes": 10809,
+    "sha256": "694c2a1e40f44eb86223abe54e807644cc0ab5c132ce8787e89ff37fe4269022"
+  },
+  {
+    "role": "builder",
+    "task_id": "01a0f552-6769-7be2-81a4-39649dc81eff",
+    "student_messages": 6,
+    "agent_messages_including_progress_and_questions": 27,
+    "bytes": 26609,
+    "sha256": "929408465fa78b899fd756c66e6fd1f1f60db9bbd39744b2597fa2a8fbbc3cab"
+  },
+  {
+    "role": "tester",
+    "task_id": "01a0f59b-c83d-7080-8b94-abb72a9cd152",
+    "student_messages": 5,
+    "agent_messages_including_progress_and_questions": 28,
+    "bytes": 21628,
+    "sha256": "732f20df824fc4dc245ebb482a7004e9125f0adb4c3c0c606710a42a184d59cf"
+  }
+]

@@ -45,6 +45,14 @@ volumes and manifests were not altered by these isolated verification projects.
 
 ## Submission handoff
 
-Complete role-chat exports still need the exact three source-task links. Existing
-Architect and Builder files are explicitly labeled excerpts; the Tester export is
-not yet present. Do not represent these as the final complete transcripts.
+The three original role tasks were located with the student's authorization.
+Their complete user/assistant visible-text exports are now in `docs/transcripts/`:
+`cl787_architect.txt`, `cl787_builder.txt`, and `cl787_tester.txt`. Each includes
+progress messages and interactive questions/answers, with timestamps and source
+identifiers. System instructions, hidden reasoning and tool execution logs are
+excluded as stated in each header. Original historical outcomes remain unchanged.
+The earlier excerpt files were backed up outside the repository before replacement.
+
+Canvas handoff: submit Repository A and Repository B URLs and upload the three
+individual transcript files. The student must perform the final Canvas submission;
+no Canvas upload or submission is claimed here.

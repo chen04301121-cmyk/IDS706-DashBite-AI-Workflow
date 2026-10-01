@@ -37,8 +37,13 @@ its timeout. The student's manual results are preserved in the dated sections,
 including 479 unchanged files and 850 new predictions in the worker-fix rerun.
 Later assistant-observed checks are explicitly separate from personal student tests.
 
-Classroom foundations and attribution remain below. Full role-chat exports are
-being completed; the existing transcript excerpts must not be described as complete.
+Classroom foundations and attribution remain below. Original role-task visible-text
+exports (user messages, assistant replies/progress, and interactive questions) are
+available in [Architect](docs/transcripts/cl787_architect.txt),
+[Builder](docs/transcripts/cl787_builder.txt), and
+[Tester](docs/transcripts/cl787_tester.txt). These replace the earlier excerpts;
+system instructions, hidden reasoning and tool execution logs are excluded.
+The export headers state the exact scope and source task identifiers.
 
 
 Teaching demo of a modular data + ML application. **DashBite** predicts whether a food-delivery order will be **late**.
