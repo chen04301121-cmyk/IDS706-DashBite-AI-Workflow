@@ -4,7 +4,9 @@ Owns a unique project. Success removes only its disposable resources; failure
 stops writers and preserves the volume and diagnostics for investigation.
 """
 import argparse
+from datetime import datetime
 import json
+import math
 import os
 from pathlib import Path
 import socket
@@ -89,7 +91,8 @@ def stop_and_check(*services):
     """Keep the command SLA; independently measure signal-to-exit time."""
     expected = set(services) or SERVICES
     # Query daemon time to delimit event history without assuming host/VM sync.
-    since = run(['docker', 'info', '--format', '{{.SystemTime}}']).stdout.strip()
+    daemon_start = run(['docker', 'info', '--format', '{{.SystemTime}}']).stdout.strip()
+    since = str(math.floor(datetime.fromisoformat(daemon_start.replace('Z', '+00:00')).timestamp()) - 2)
     started = time.monotonic()
     result = compose('stop', *services, check=False)
     elapsed = time.monotonic() - started
@@ -105,7 +108,10 @@ def stop_and_check(*services):
         state = container['State']
         print(f"Shutdown {name}: status={state['Status']}, exit={state['ExitCode']}, "
               f"OOMKilled={state['OOMKilled']}, FinishedAt={state['FinishedAt']}", flush=True)
-    until = run(['docker', 'info', '--format', '{{.SystemTime}}']).stdout.strip()
+    # Pad retrieval bounds only; acceptance uses original precise event times.
+    # Same-second events can be omitted at Docker history query boundaries.
+    daemon_end = run(['docker', 'info', '--format', '{{.SystemTime}}']).stdout.strip()
+    until = str(math.ceil(datetime.fromisoformat(daemon_end.replace('Z', '+00:00')).timestamp()) + 2)
     event_output = run(['docker', 'events', '--since', since, '--until', until,
                         '--filter', 'type=container', '--filter',
                         f'label=com.docker.compose.project={PROJECT}', '--format', '{{json .}}']).stdout

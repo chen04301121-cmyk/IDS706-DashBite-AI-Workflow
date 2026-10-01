@@ -1,5 +1,46 @@
 # DashBite — Simple Stage-by-Stage ML Pipeline
 
+## Final submission status — 2026-10-01
+
+Chen Liu (`cl787`), IDS706 Repository B, Option 1.
+
+The earlier dated sections below are the development record, including genuine
+failed checks. Current source includes the subsequent checkpoint-publication fix:
+training writes a hidden temporary file and publishes the complete checkpoint by
+same-directory atomic replacement. Metrics are published before the checkpoint;
+training state, raw batches, feature batches, and prediction CSVs use the same
+publication helper. Microsecond checkpoint names and an overwrite check avoid
+replacing a checkpoint already visible to readers. The native suite is **99 passed**.
+The final browser-assisted Docker gate **passed**: 352 unchanged files, 300 new
+predictions after restart, all exits 0/no OOM, final stop 1.513 seconds.
+
+See [final verification and remaining submission items](docs/final-verification.md).
+
+### Role contributions and student decisions
+
+- **Architect:** inspected the classroom application and appended the reviewed
+  containerization plan; kept one shared image, five services, and isolated storage.
+- **Builder:** implemented Compose, configurable paths, inspection helpers, tests,
+  and graceful worker shutdown after the student's observed exit-137 failures.
+- **Tester:** independently reviewed the implementation, fixed misleading dashboard
+  states, improved shutdown evidence, and reproduced the active-browser shutdown
+  bug; replaced the blocking refresh loop with periodic Streamlit fragments.
+- **Final integration follow-up:** fixed the checkpoint publication race exposed
+  by the Tester and completed further verification. This is subsequent integration
+  work, not a rewritten claim about the earlier independent review.
+
+Accepted recommendation: separate HTTP health from artifact readiness and check
+persistence before restarting writers. Changed recommendation: replace lengthy
+inline smoke-test Python commands with two inspectable helper scripts. Kept the
+original 10-second stop criterion instead of hiding failed shutdowns by extending
+its timeout. The student's manual results are preserved in the dated sections,
+including 479 unchanged files and 850 new predictions in the worker-fix rerun.
+Later assistant-observed checks are explicitly separate from personal student tests.
+
+Classroom foundations and attribution remain below. Full role-chat exports are
+being completed; the existing transcript excerpts must not be described as complete.
+
+
 Teaching demo of a modular data + ML application. **DashBite** predicts whether a food-delivery order will be **late**.
 
 Run natively or with the Docker Compose workflow below. Stages are separate Python modules that share folders under `data/` by default. Training and inference are **independent processes** coupled only by timestamped checkpoints in `data/models/`. Inference always uses the **newest** checkpoint.

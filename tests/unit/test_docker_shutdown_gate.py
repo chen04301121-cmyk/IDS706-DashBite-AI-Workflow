@@ -37,6 +37,8 @@ def test_stop_evidence_and_criteria(monkeypatch, capsys, wall, exit_code, oom, d
         if command[1] == 'inspect':
             value = json.dumps(containers)
         elif command[1] == 'events':
+            assert int(command[command.index('--since') + 1]) < 1790812800
+            assert int(command[command.index('--until') + 1]) > 1790812800
             value = '\n'.join(json.dumps(e) for name in ('train', 'infer') for e in events(name, daemon))
         else:
             value = '2026-10-01T00:00:00Z'
@@ -71,7 +73,7 @@ def test_event_query_failure_keeps_exit_status_visible(monkeypatch, capsys):
     def run(command, **kwargs):
         if command[1] == 'events':
             raise RuntimeError('daemon event query failed')
-        return SimpleNamespace(stdout=json.dumps([container]) if command[1] == 'inspect' else 'time')
+        return SimpleNamespace(stdout=json.dumps([container]) if command[1] == 'inspect' else '2026-10-01T00:00:00Z')
     monkeypatch.setattr(gate, 'run', run)
     monkeypatch.setattr(gate, 'compose', lambda *args, **kwargs:
                         SimpleNamespace(stdout='train', returncode=0))

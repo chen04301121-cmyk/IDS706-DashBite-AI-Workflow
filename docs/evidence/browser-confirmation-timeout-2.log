@@ -1,0 +1,433 @@
+Client:
+ Version:           29.7.2
+ API version:       1.55
+ Go version:        go1.26.5
+ Git commit:        a7dcaa6
+ Built:             Wed Aug  5 18:27:50 2026
+ OS/Arch:           darwin/arm64
+ Context:           default
+
+Server: Docker Desktop 4.88.1 (237512)
+ Engine:
+  Version:          29.7.2
+  API version:      1.55 (minimum version 1.40)
+  Go version:       go1.26.5
+  Git commit:       6a43e3d
+  Built:            Wed Aug  5 18:28:35 2026
+  OS/Arch:          linux/arm64
+  Experimental:     false
+ containerd:
+  Version:          v2.3.3
+  GitCommit:        aad11006b869517fcd3009450b6f82da282e1a9b
+ runc:
+  Version:          1.4.3
+  GitCommit:        v1.4.3-0-gbb14dabe
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+
+Docker Compose version v5.4.0
+
+Isolated project: dashbite-test-0aab49c50a8e; root: /tmp/dashbite-verify-data; port: 50142
+PASS: default/custom Compose configuration
+ Image dashbite-test-0aab49c50a8e:local Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 632B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 391B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 1.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 289B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 782B done
+#5 DONE 0.0s
+
+#6 [1/6] FROM docker.io/library/python:3.12-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+#6 resolve docker.io/library/python:3.12-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f 0.0s done
+#6 DONE 0.0s
+
+#7 [5/6] COPY pipeline/ pipeline/
+#7 CACHED
+
+#8 [3/6] COPY requirements.txt .
+#8 CACHED
+
+#9 [4/6] RUN pip install --no-cache-dir -r requirements.txt
+#9 CACHED
+
+#10 [2/6] WORKDIR /app
+#10 CACHED
+
+#11 [6/6] COPY scripts/check_artifacts.py scripts/check_persistence.py scripts/
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:8c3dba3ce5854c70a0022ad930223d6006f65b3bda250068febf4b916aa455fa done
+#12 exporting config sha256:fe20029e99eaf279bf5abef76e7b74d38e1b14f515e244950882a1bd366cdd1c done
+#12 exporting attestation manifest sha256:aea76970cb6e16d9c7549eea27e4097fe497f25ed44813a2a635adb7aeec797d done
+#12 exporting manifest list sha256:3c4defc176e68a89b73e5383b8df3dac01f4f7f01bcafa662eeb280b99ee27a6 done
+#12 naming to docker.io/library/dashbite-test-0aab49c50a8e:local done
+#12 unpacking to docker.io/library/dashbite-test-0aab49c50a8e:local done
+#12 DONE 0.1s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image dashbite-test-0aab49c50a8e:local Built 
+
+DATA_ROOT: /tmp/dashbite-verify-data
+FAIL: waiting for raw/orders_*.csv under /tmp/dashbite-verify-data
+
+PASS: empty dashboard healthy, pipeline not ready
+DATA_ROOT: /tmp/dashbite-verify-data
+FAIL: waiting for features/features_*.csv under /tmp/dashbite-verify-data
+
+DATA_ROOT: /tmp/dashbite-verify-data
+FAIL: waiting for predictions/predictions_*.csv under /tmp/dashbite-verify-data
+
+DATA_ROOT: /tmp/dashbite-verify-data
+DATA_ROOT: /tmp/dashbite-verify-data
+raw: 3 files, 150 rows; example: /tmp/dashbite-verify-data/raw/orders_20261001_163343_933268_0000.csv
+features: 3 files, 150 rows; example: /tmp/dashbite-verify-data/features/features_orders_20261001_163343_933268_0000.csv
+predictions: 1 files, 150 rows; example: /tmp/dashbite-verify-data/predictions/predictions_checkpoint_20261001_163346_984279_1790872428.csv
+quality: 1 files, 4 rows; example: /tmp/dashbite-verify-data/quality/batch_quality.csv
+checkpoints: 2; example: /tmp/dashbite-verify-data/models/checkpoint_20261001_163346_984279.joblib
+                            order_id  late_probability  predicted_late          checkpoint_id
+ed5d02a2-1174-4f72-9464-b39305fc52d8            0.9131               1 20261001_163346_984279
+edf48a3b-48d3-4eef-bbf3-06fa6bd09d8f            0.5818               1 20261001_163346_984279
+6cb8766b-4249-4667-b725-ed74bf227c7c            0.2918               0 20261001_163346_984279
+7367b50a-028f-4750-aa62-133e22554fd4            0.2994               0 20261001_163346_984279
+06d66385-3b17-4263-9ef9-4293a05dd285            0.7154               1 20261001_163346_984279
+PASS: artifacts and handoffs verified
+
+Runtime architecture: aarch64
+linux/arm64
+
+altair==6.3.0
+anyio==4.15.1
+attrs==26.1.0
+certifi==2026.7.22
+charset-normalizer==3.5.2
+click==8.5.0
+cloudpickle==3.1.2
+h11==0.16.0
+httptools==0.8.0
+idna==3.20
+iniconfig==2.3.0
+itsdangerous==2.2.0
+Jinja2==3.1.6
+joblib==1.6.0
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+MarkupSafe==3.0.3
+narwhals==2.26.0
+numpy==2.5.3
+packaging==26.3
+pandas==3.0.6
+pillow==12.3.0
+pluggy==1.6.0
+protobuf==7.36.2
+pyarrow==25.0.1
+pydeck==0.9.3
+Pygments==2.21.0
+pytest==9.1.1
+python-dateutil==2.9.0.post0
+python-multipart==0.0.32
+referencing==0.37.0
+requests==2.34.2
+rpds-py==2026.6.3
+scikit-learn==1.9.1
+scipy==1.18.1
+six==1.17.0
+starlette==1.7.0
+streamlit==1.64.0
+threadpoolctl==3.7.0
+toml==0.10.2
+typing_extensions==4.16.0
+urllib3==2.8.0
+uvicorn==0.54.0
+watchdog==6.0.0
+websockets==16.1.1
+
+BROWSER CHECK: http://127.0.0.1:50142
+Open/reload this URL in a real browser. Leave Auto-refresh (15s) checked. Observe at least two automatic updates without reloading, then leave the tab open. Type browser-verified within 180s to run the timed stop:
+FAIL: browser observation timed out; NOT VERIFIED
+NAME                                      IMAGE                              COMMAND                  SERVICE      CREATED         STATUS                   PORTS
+dashbite-test-0aab49c50a8e-dashboard-1    dashbite-test-0aab49c50a8e:local   "streamlit run pipel…"   dashboard    3 minutes ago   Up 3 minutes (healthy)   127.0.0.1:50142->8501/tcp
+dashbite-test-0aab49c50a8e-infer-1        dashbite-test-0aab49c50a8e:local   "python -m pipeline.…"   infer        3 minutes ago   Up 3 minutes             
+dashbite-test-0aab49c50a8e-preprocess-1   dashbite-test-0aab49c50a8e:local   "python -m pipeline.…"   preprocess   3 minutes ago   Up 3 minutes             
+dashbite-test-0aab49c50a8e-simulator-1    dashbite-test-0aab49c50a8e:local   "python -m pipeline.…"   simulator    3 minutes ago   Up 3 minutes             
+dashbite-test-0aab49c50a8e-train-1        dashbite-test-0aab49c50a8e:local   "python -m pipeline.…"   train        3 minutes ago   Up 3 minutes             
+
+dashboard-1  | 
+dashboard-1  | Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+dashboard-1  | 
+dashboard-1  | 2026-10-01 16:33:35.680 Uvicorn server started on 0.0.0.0:8501
+dashboard-1  | 
+dashboard-1  |   You can now view your Streamlit app in your browser.
+dashboard-1  | 
+dashboard-1  |   Local URL: http://localhost:8501
+dashboard-1  |   Network URL: http://172.22.0.2:8501
+dashboard-1  |   External URL: http://173.95.247.35:8501
+dashboard-1  | 
+infer-1      | using checkpoint checkpoint_20261001_163542_768538.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163542_768538.joblib -> predictions_checkpoint_20261001_163542_768538_1790872544.csv
+infer-1      | using checkpoint checkpoint_20261001_163544_882883.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163544_882883.joblib -> predictions_checkpoint_20261001_163544_882883_1790872546.csv
+infer-1      | using checkpoint checkpoint_20261001_163546_968529.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163546_968529.joblib -> predictions_checkpoint_20261001_163546_968529_1790872548.csv
+infer-1      | using checkpoint checkpoint_20261001_163549_045379.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163549_045379.joblib -> predictions_checkpoint_20261001_163549_045379_1790872550.csv
+infer-1      | using checkpoint checkpoint_20261001_163551_104288.joblib
+infer-1      | scored 100 orders with checkpoint_20261001_163551_104288.joblib -> predictions_checkpoint_20261001_163551_104288_1790872553.csv
+infer-1      | using checkpoint checkpoint_20261001_163553_202135.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163553_202135.joblib -> predictions_checkpoint_20261001_163553_202135_1790872555.csv
+infer-1      | using checkpoint checkpoint_20261001_163555_266276.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163555_266276.joblib -> predictions_checkpoint_20261001_163555_266276_1790872557.csv
+infer-1      | using checkpoint checkpoint_20261001_163557_394839.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163557_394839.joblib -> predictions_checkpoint_20261001_163557_394839_1790872559.csv
+infer-1      | using checkpoint checkpoint_20261001_163559_537499.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163559_537499.joblib -> predictions_checkpoint_20261001_163559_537499_1790872561.csv
+infer-1      | using checkpoint checkpoint_20261001_163601_695145.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163601_695145.joblib -> predictions_checkpoint_20261001_163601_695145_1790872563.csv
+infer-1      | using checkpoint checkpoint_20261001_163603_936711.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163603_936711.joblib -> predictions_checkpoint_20261001_163603_936711_1790872566.csv
+infer-1      | using checkpoint checkpoint_20261001_163606_117333.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163606_117333.joblib -> predictions_checkpoint_20261001_163606_117333_1790872568.csv
+infer-1      | using checkpoint checkpoint_20261001_163608_376231.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163608_376231.joblib -> predictions_checkpoint_20261001_163608_376231_1790872570.csv
+infer-1      | using checkpoint checkpoint_20261001_163610_544707.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163610_544707.joblib -> predictions_checkpoint_20261001_163610_544707_1790872572.csv
+infer-1      | using checkpoint checkpoint_20261001_163612_717426.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163612_717426.joblib -> predictions_checkpoint_20261001_163612_717426_1790872574.csv
+infer-1      | using checkpoint checkpoint_20261001_163614_884167.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163614_884167.joblib -> predictions_checkpoint_20261001_163614_884167_1790872577.csv
+infer-1      | using checkpoint checkpoint_20261001_163617_058699.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163617_058699.joblib -> predictions_checkpoint_20261001_163617_058699_1790872579.csv
+infer-1      | using checkpoint checkpoint_20261001_163619_218548.joblib
+infer-1      | scored 100 orders with checkpoint_20261001_163619_218548.joblib -> predictions_checkpoint_20261001_163619_218548_1790872581.csv
+infer-1      | using checkpoint checkpoint_20261001_163621_391693.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163621_391693.joblib -> predictions_checkpoint_20261001_163621_391693_1790872583.csv
+infer-1      | using checkpoint checkpoint_20261001_163623_563666.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163623_563666.joblib -> predictions_checkpoint_20261001_163623_563666_1790872585.csv
+infer-1      | using checkpoint checkpoint_20261001_163627_834055.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163627_834055.joblib -> predictions_checkpoint_20261001_163627_834055_1790872587.csv
+infer-1      | scored 100 orders with checkpoint_20261001_163627_834055.joblib -> predictions_checkpoint_20261001_163627_834055_1790872590.csv
+infer-1      | using checkpoint checkpoint_20261001_163632_166584.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163632_166584.joblib -> predictions_checkpoint_20261001_163632_166584_1790872592.csv
+infer-1      | scored 50 orders with checkpoint_20261001_163632_166584.joblib -> predictions_checkpoint_20261001_163632_166584_1790872594.csv
+infer-1      | using checkpoint checkpoint_20261001_163634_448702.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163634_448702.joblib -> predictions_checkpoint_20261001_163634_448702_1790872596.csv
+infer-1      | using checkpoint checkpoint_20261001_163636_614887.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163636_614887.joblib -> predictions_checkpoint_20261001_163636_614887_1790872598.csv
+infer-1      | using checkpoint checkpoint_20261001_163638_784674.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163638_784674.joblib -> predictions_checkpoint_20261001_163638_784674_1790872601.csv
+infer-1      | using checkpoint checkpoint_20261001_163640_976991.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163640_976991.joblib -> predictions_checkpoint_20261001_163640_976991_1790872603.csv
+infer-1      | using checkpoint checkpoint_20261001_163645_314179.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163645_314179.joblib -> predictions_checkpoint_20261001_163645_314179_1790872605.csv
+infer-1      | scored 50 orders with checkpoint_20261001_163645_314179.joblib -> predictions_checkpoint_20261001_163645_314179_1790872607.csv
+infer-1      | using checkpoint checkpoint_20261001_163647_621558.joblib
+infer-1      | scored 50 orders with checkpoint_20261001_163647_621558.joblib -> predictions_checkpoint_20261001_163647_621558_1790872609.csv
+infer-1      | using checkpoint checkpoint_20261001_163651_976562.joblib
+train-1      | trained checkpoint checkpoint_20261001_163445_686825.joblib (accuracy=0.747, labeled=1550)
+train-1      | trained checkpoint checkpoint_20261001_163447_797267.joblib (accuracy=0.733, labeled=1600)
+train-1      | trained checkpoint checkpoint_20261001_163449_879701.joblib (accuracy=0.729, labeled=1650)
+train-1      | trained checkpoint checkpoint_20261001_163452_001449.joblib (accuracy=0.739, labeled=1700)
+train-1      | trained checkpoint checkpoint_20261001_163454_083772.joblib (accuracy=0.717, labeled=1750)
+train-1      | trained checkpoint checkpoint_20261001_163456_195673.joblib (accuracy=0.718, labeled=1800)
+train-1      | trained checkpoint checkpoint_20261001_163458_380710.joblib (accuracy=0.724, labeled=1850)
+train-1      | trained checkpoint checkpoint_20261001_163500_492686.joblib (accuracy=0.733, labeled=1900)
+train-1      | trained checkpoint checkpoint_20261001_163502_610411.joblib (accuracy=0.732, labeled=1950)
+train-1      | trained checkpoint checkpoint_20261001_163504_730024.joblib (accuracy=0.734, labeled=2000)
+train-1      | trained checkpoint checkpoint_20261001_163506_867548.joblib (accuracy=0.733, labeled=2050)
+train-1      | trained checkpoint checkpoint_20261001_163508_971699.joblib (accuracy=0.737, labeled=2100)
+train-1      | trained checkpoint checkpoint_20261001_163511_035901.joblib (accuracy=0.738, labeled=2150)
+train-1      | trained checkpoint checkpoint_20261001_163513_297477.joblib (accuracy=0.753, labeled=2200)
+train-1      | trained checkpoint checkpoint_20261001_163515_404517.joblib (accuracy=0.742, labeled=2250)
+train-1      | trained checkpoint checkpoint_20261001_163517_513559.joblib (accuracy=0.743, labeled=2300)
+train-1      | trained checkpoint checkpoint_20261001_163519_645281.joblib (accuracy=0.752, labeled=2350)
+train-1      | trained checkpoint checkpoint_20261001_163521_688035.joblib (accuracy=0.758, labeled=2400)
+train-1      | trained checkpoint checkpoint_20261001_163523_774806.joblib (accuracy=0.755, labeled=2450)
+train-1      | trained checkpoint checkpoint_20261001_163525_897431.joblib (accuracy=0.757, labeled=2500)
+train-1      | trained checkpoint checkpoint_20261001_163527_997707.joblib (accuracy=0.760, labeled=2550)
+train-1      | trained checkpoint checkpoint_20261001_163530_092190.joblib (accuracy=0.737, labeled=2600)
+train-1      | trained checkpoint checkpoint_20261001_163532_200782.joblib (accuracy=0.732, labeled=2650)
+train-1      | trained checkpoint checkpoint_20261001_163534_294310.joblib (accuracy=0.724, labeled=2700)
+train-1      | trained checkpoint checkpoint_20261001_163536_424876.joblib (accuracy=0.750, labeled=2750)
+train-1      | trained checkpoint checkpoint_20261001_163538_526795.joblib (accuracy=0.756, labeled=2800)
+train-1      | trained checkpoint checkpoint_20261001_163540_662084.joblib (accuracy=0.745, labeled=2850)
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163452_710311_0034.csv
+train-1      | trained checkpoint checkpoint_20261001_163542_768538.joblib (accuracy=0.753, labeled=2900)
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163454_724671_0035.csv
+train-1      | trained checkpoint checkpoint_20261001_163544_882883.joblib (accuracy=0.744, labeled=2950)
+train-1      | trained checkpoint checkpoint_20261001_163546_968529.joblib (accuracy=0.754, labeled=3050)
+train-1      | trained checkpoint checkpoint_20261001_163549_045379.joblib (accuracy=0.747, labeled=3100)
+train-1      | trained checkpoint checkpoint_20261001_163551_104288.joblib (accuracy=0.758, labeled=3150)
+train-1      | trained checkpoint checkpoint_20261001_163553_202135.joblib (accuracy=0.751, labeled=3200)
+train-1      | trained checkpoint checkpoint_20261001_163555_266276.joblib (accuracy=0.755, labeled=3250)
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163456_737334_0036.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163458_844652_0037.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163500_868936_0038.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163502_905751_0039.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163504_919284_0040.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163506_928784_0041.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163508_944807_0042.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163510_956061_0043.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163513_004246_0044.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163515_045603_0045.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163517_062930_0046.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163519_089411_0047.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163521_102997_0048.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163523_106626_0049.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163525_124822_0050.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163527_141595_0051.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163529_157961_0052.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163531_171607_0053.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163533_183931_0054.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163535_209721_0055.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163537_232952_0056.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163539_271857_0057.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163541_290006_0058.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163543_309731_0059.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163545_337326_0060.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163547_359211_0061.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163549_394559_0062.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163551_418912_0063.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163553_437188_0064.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163555_447128_0065.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163557_458197_0066.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163559_461476_0067.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163601_498737_0068.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163603_539437_0069.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163605_558315_0070.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163607_571124_0071.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163609_591750_0072.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163611_609164_0073.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163613_625757_0074.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163615_637242_0075.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163617_661819_0076.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163619_680159_0077.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163621_708077_0078.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163623_725236_0079.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163625_736230_0080.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163627_763804_0081.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163629_782294_0082.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163631_809247_0083.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163633_834822_0084.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163635_886631_0085.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163637_901517_0086.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163639_930348_0087.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163641_955524_0088.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163643_977857_0089.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163645_997807_0090.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163648_042900_0091.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163650_068396_0092.csv
+simulator-1  | new orders arrived (50 orders) -> orders_20261001_163652_074901_0093.csv
+train-1      | trained checkpoint checkpoint_20261001_163557_394839.joblib (accuracy=0.750, labeled=3300)
+train-1      | trained checkpoint checkpoint_20261001_163559_537499.joblib (accuracy=0.745, labeled=3350)
+train-1      | trained checkpoint checkpoint_20261001_163601_695145.joblib (accuracy=0.741, labeled=3400)
+train-1      | trained checkpoint checkpoint_20261001_163603_936711.joblib (accuracy=0.747, labeled=3450)
+train-1      | trained checkpoint checkpoint_20261001_163606_117333.joblib (accuracy=0.747, labeled=3500)
+train-1      | trained checkpoint checkpoint_20261001_163608_376231.joblib (accuracy=0.745, labeled=3550)
+train-1      | trained checkpoint checkpoint_20261001_163610_544707.joblib (accuracy=0.744, labeled=3600)
+train-1      | trained checkpoint checkpoint_20261001_163612_717426.joblib (accuracy=0.729, labeled=3650)
+train-1      | trained checkpoint checkpoint_20261001_163614_884167.joblib (accuracy=0.744, labeled=3700)
+train-1      | trained checkpoint checkpoint_20261001_163617_058699.joblib (accuracy=0.744, labeled=3750)
+train-1      | trained checkpoint checkpoint_20261001_163619_218548.joblib (accuracy=0.741, labeled=3800)
+train-1      | trained checkpoint checkpoint_20261001_163621_391693.joblib (accuracy=0.744, labeled=3900)
+train-1      | trained checkpoint checkpoint_20261001_163623_563666.joblib (accuracy=0.733, labeled=3950)
+train-1      | trained checkpoint checkpoint_20261001_163625_719169.joblib (accuracy=0.747, labeled=4000)
+train-1      | trained checkpoint checkpoint_20261001_163627_834055.joblib (accuracy=0.736, labeled=4050)
+train-1      | trained checkpoint checkpoint_20261001_163630_078686.joblib (accuracy=0.750, labeled=4100)
+train-1      | trained checkpoint checkpoint_20261001_163632_166584.joblib (accuracy=0.748, labeled=4200)
+train-1      | trained checkpoint checkpoint_20261001_163634_448702.joblib (accuracy=0.745, labeled=4250)
+train-1      | trained checkpoint checkpoint_20261001_163636_614887.joblib (accuracy=0.740, labeled=4300)
+train-1      | trained checkpoint checkpoint_20261001_163638_784674.joblib (accuracy=0.732, labeled=4350)
+train-1      | trained checkpoint checkpoint_20261001_163640_976991.joblib (accuracy=0.738, labeled=4400)
+train-1      | trained checkpoint checkpoint_20261001_163643_191858.joblib (accuracy=0.745, labeled=4450)
+train-1      | trained checkpoint checkpoint_20261001_163645_314179.joblib (accuracy=0.742, labeled=4500)
+train-1      | trained checkpoint checkpoint_20261001_163647_621558.joblib (accuracy=0.734, labeled=4550)
+train-1      | trained checkpoint checkpoint_20261001_163649_842889.joblib (accuracy=0.736, labeled=4600)
+train-1      | trained checkpoint checkpoint_20261001_163651_976562.joblib (accuracy=0.736, labeled=4650)
+preprocess-1  | preprocessed orders_20261001_163450_681861_0033.csv -> features_orders_20261001_163450_681861_0033.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163452_710311_0034.csv -> features_orders_20261001_163452_710311_0034.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163454_724671_0035.csv -> features_orders_20261001_163454_724671_0035.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163456_737334_0036.csv -> features_orders_20261001_163456_737334_0036.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163458_844652_0037.csv -> features_orders_20261001_163458_844652_0037.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163500_868936_0038.csv -> features_orders_20261001_163500_868936_0038.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163502_905751_0039.csv -> features_orders_20261001_163502_905751_0039.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163504_919284_0040.csv -> features_orders_20261001_163504_919284_0040.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163506_928784_0041.csv -> features_orders_20261001_163506_928784_0041.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163508_944807_0042.csv -> features_orders_20261001_163508_944807_0042.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163510_956061_0043.csv -> features_orders_20261001_163510_956061_0043.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163513_004246_0044.csv -> features_orders_20261001_163513_004246_0044.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163515_045603_0045.csv -> features_orders_20261001_163515_045603_0045.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163517_062930_0046.csv -> features_orders_20261001_163517_062930_0046.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163519_089411_0047.csv -> features_orders_20261001_163519_089411_0047.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163521_102997_0048.csv -> features_orders_20261001_163521_102997_0048.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163523_106626_0049.csv -> features_orders_20261001_163523_106626_0049.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163525_124822_0050.csv -> features_orders_20261001_163525_124822_0050.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163527_141595_0051.csv -> features_orders_20261001_163527_141595_0051.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163529_157961_0052.csv -> features_orders_20261001_163529_157961_0052.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163531_171607_0053.csv -> features_orders_20261001_163531_171607_0053.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163533_183931_0054.csv -> features_orders_20261001_163533_183931_0054.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163535_209721_0055.csv -> features_orders_20261001_163535_209721_0055.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163537_232952_0056.csv -> features_orders_20261001_163537_232952_0056.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163539_271857_0057.csv -> features_orders_20261001_163539_271857_0057.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163541_290006_0058.csv -> features_orders_20261001_163541_290006_0058.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163543_309731_0059.csv -> features_orders_20261001_163543_309731_0059.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163545_337326_0060.csv -> features_orders_20261001_163545_337326_0060.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163547_359211_0061.csv -> features_orders_20261001_163547_359211_0061.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163549_394559_0062.csv -> features_orders_20261001_163549_394559_0062.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163551_418912_0063.csv -> features_orders_20261001_163551_418912_0063.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163553_437188_0064.csv -> features_orders_20261001_163553_437188_0064.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163555_447128_0065.csv -> features_orders_20261001_163555_447128_0065.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163557_458197_0066.csv -> features_orders_20261001_163557_458197_0066.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163559_461476_0067.csv -> features_orders_20261001_163559_461476_0067.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163601_498737_0068.csv -> features_orders_20261001_163601_498737_0068.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163603_539437_0069.csv -> features_orders_20261001_163603_539437_0069.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163605_558315_0070.csv -> features_orders_20261001_163605_558315_0070.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163607_571124_0071.csv -> features_orders_20261001_163607_571124_0071.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163609_591750_0072.csv -> features_orders_20261001_163609_591750_0072.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163611_609164_0073.csv -> features_orders_20261001_163611_609164_0073.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163613_625757_0074.csv -> features_orders_20261001_163613_625757_0074.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163615_637242_0075.csv -> features_orders_20261001_163615_637242_0075.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163617_661819_0076.csv -> features_orders_20261001_163617_661819_0076.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163619_680159_0077.csv -> features_orders_20261001_163619_680159_0077.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163621_708077_0078.csv -> features_orders_20261001_163621_708077_0078.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163623_725236_0079.csv -> features_orders_20261001_163623_725236_0079.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163625_736230_0080.csv -> features_orders_20261001_163625_736230_0080.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163627_763804_0081.csv -> features_orders_20261001_163627_763804_0081.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163629_782294_0082.csv -> features_orders_20261001_163629_782294_0082.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163631_809247_0083.csv -> features_orders_20261001_163631_809247_0083.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163633_834822_0084.csv -> features_orders_20261001_163633_834822_0084.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163635_886631_0085.csv -> features_orders_20261001_163635_886631_0085.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163637_901517_0086.csv -> features_orders_20261001_163637_901517_0086.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163639_930348_0087.csv -> features_orders_20261001_163639_930348_0087.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163641_955524_0088.csv -> features_orders_20261001_163641_955524_0088.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163643_977857_0089.csv -> features_orders_20261001_163643_977857_0089.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163645_997807_0090.csv -> features_orders_20261001_163645_997807_0090.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163648_042900_0091.csv -> features_orders_20261001_163648_042900_0091.csv (50/50 rows kept, drop_rate=0.0%)
+preprocess-1  | preprocessed orders_20261001_163650_068396_0092.csv -> features_orders_20261001_163650_068396_0092.csv (50/50 rows kept, drop_rate=0.0%)
+
+ Container dashbite-test-0aab49c50a8e-preprocess-1 Stopping 
+ Container dashbite-test-0aab49c50a8e-dashboard-1 Stopping 
+ Container dashbite-test-0aab49c50a8e-train-1 Stopping 
+ Container dashbite-test-0aab49c50a8e-infer-1 Stopping 
+ Container dashbite-test-0aab49c50a8e-simulator-1 Stopping 
+ Container dashbite-test-0aab49c50a8e-preprocess-1 Stopped 
+ Container dashbite-test-0aab49c50a8e-simulator-1 Stopped 
+ Container dashbite-test-0aab49c50a8e-infer-1 Stopped 
+ Container dashbite-test-0aab49c50a8e-train-1 Stopped 
+ Container dashbite-test-0aab49c50a8e-dashboard-1 Stopped 
+
+Preserved project dashbite-test-0aab49c50a8e. Inspect with docker compose -p dashbite-test-0aab49c50a8e ps -a; do not replace its manifest.

@@ -1,0 +1,647 @@
+Client:
+ Version:           29.7.2
+ API version:       1.55
+ Go version:        go1.26.5
+ Git commit:        a7dcaa6
+ Built:             Wed Aug  5 18:27:50 2026
+ OS/Arch:           darwin/arm64
+ Context:           default
+
+Server: Docker Desktop 4.88.1 (237512)
+ Engine:
+  Version:          29.7.2
+  API version:      1.55 (minimum version 1.40)
+  Go version:       go1.26.5
+  Git commit:       6a43e3d
+  Built:            Wed Aug  5 18:28:35 2026
+  OS/Arch:          linux/arm64
+  Experimental:     false
+ containerd:
+  Version:          v2.3.3
+  GitCommit:        aad11006b869517fcd3009450b6f82da282e1a9b
+ runc:
+  Version:          1.4.3
+  GitCommit:        v1.4.3-0-gbb14dabe
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+
+Docker Compose version v5.4.0
+
+Isolated project: dashbite-test-732db3e6b2e0; root: /tmp/dashbite-verify-data; port: 50980
+PASS: default/custom Compose configuration
+ Image dashbite-test-732db3e6b2e0:local Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 632B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 391B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 289B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 782B done
+#5 DONE 0.0s
+
+#6 [1/6] FROM docker.io/library/python:3.12-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+#6 resolve docker.io/library/python:3.12-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f 0.0s done
+#6 DONE 0.0s
+
+#7 [4/6] RUN pip install --no-cache-dir -r requirements.txt
+#7 CACHED
+
+#8 [5/6] COPY pipeline/ pipeline/
+#8 CACHED
+
+#9 [2/6] WORKDIR /app
+#9 CACHED
+
+#10 [3/6] COPY requirements.txt .
+#10 CACHED
+
+#11 [6/6] COPY scripts/check_artifacts.py scripts/check_persistence.py scripts/
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007 done
+#12 exporting config sha256:b47ebf29b00adf019d098cb224643c669498d403ccac9be37cc52213f5d68c63 done
+#12 exporting attestation manifest sha256:2df2697675f83a7b2958bb306227e220f489878ccba1ea76acab342cdf0e4592
+#12 exporting attestation manifest sha256:2df2697675f83a7b2958bb306227e220f489878ccba1ea76acab342cdf0e4592 done
+#12 exporting manifest list sha256:09a31f645c68b01cd96a6d494993bf164532c81e4a6803238e6754b92dc6b358 done
+#12 naming to docker.io/library/dashbite-test-732db3e6b2e0:local done
+#12 unpacking to docker.io/library/dashbite-test-732db3e6b2e0:local done
+#12 DONE 0.1s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image dashbite-test-732db3e6b2e0:local Built 
+
+DATA_ROOT: /tmp/dashbite-verify-data
+FAIL: waiting for raw/orders_*.csv under /tmp/dashbite-verify-data
+
+PASS: empty dashboard healthy, pipeline not ready
+DATA_ROOT: /tmp/dashbite-verify-data
+FAIL: waiting for features/features_*.csv under /tmp/dashbite-verify-data
+
+DATA_ROOT: /tmp/dashbite-verify-data
+FAIL: waiting for predictions/predictions_*.csv under /tmp/dashbite-verify-data
+
+DATA_ROOT: /tmp/dashbite-verify-data
+DATA_ROOT: /tmp/dashbite-verify-data
+raw: 3 files, 150 rows; example: /tmp/dashbite-verify-data/raw/orders_20261001_164100_861350_0000.csv
+features: 3 files, 150 rows; example: /tmp/dashbite-verify-data/features/features_orders_20261001_164100_861350_0000.csv
+predictions: 1 files, 150 rows; example: /tmp/dashbite-verify-data/predictions/predictions_checkpoint_20261001_164103_847946_1790872865.csv
+quality: 1 files, 4 rows; example: /tmp/dashbite-verify-data/quality/batch_quality.csv
+checkpoints: 2; example: /tmp/dashbite-verify-data/models/checkpoint_20261001_164103_847946.joblib
+                            order_id  late_probability  predicted_late          checkpoint_id
+2fb358cb-3875-428c-ad69-0ae65e63970f            0.8414               1 20261001_164103_847946
+6cdb3f59-ed0a-4481-b07a-d3f607c1daa5            0.9662               1 20261001_164103_847946
+8e67184c-e2ed-44a8-8f72-3ca480a5bbdc            0.3284               0 20261001_164103_847946
+7a49c390-4f4b-494d-a04d-0e8b3b389175            0.5847               1 20261001_164103_847946
+a1ebce18-cbbe-426a-8600-906f80983381            0.5058               1 20261001_164103_847946
+PASS: artifacts and handoffs verified
+
+Runtime architecture: aarch64
+linux/arm64
+
+altair==6.3.0
+anyio==4.15.1
+attrs==26.1.0
+certifi==2026.7.22
+charset-normalizer==3.5.2
+click==8.5.0
+cloudpickle==3.1.2
+h11==0.16.0
+httptools==0.8.0
+idna==3.20
+iniconfig==2.3.0
+itsdangerous==2.2.0
+Jinja2==3.1.6
+joblib==1.6.0
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+MarkupSafe==3.0.3
+narwhals==2.26.0
+numpy==2.5.3
+packaging==26.3
+pandas==3.0.6
+pillow==12.3.0
+pluggy==1.6.0
+protobuf==7.36.2
+pyarrow==25.0.1
+pydeck==0.9.3
+Pygments==2.21.0
+pytest==9.1.1
+python-dateutil==2.9.0.post0
+python-multipart==0.0.32
+referencing==0.37.0
+requests==2.34.2
+rpds-py==2026.6.3
+scikit-learn==1.9.1
+scipy==1.18.1
+six==1.17.0
+starlette==1.7.0
+streamlit==1.64.0
+threadpoolctl==3.7.0
+toml==0.10.2
+typing_extensions==4.16.0
+urllib3==2.8.0
+uvicorn==0.54.0
+watchdog==6.0.0
+websockets==16.1.1
+
+BROWSER CHECK: http://127.0.0.1:50980
+Open/reload this URL in a real browser. Leave Auto-refresh (15s) checked. Observe at least two automatic updates without reloading, then leave the tab open. Type browser-verified within 180s to run the timed stop:
+Browser observer confirmed active auto-refresh; tab must remain open during stop.
+Compose stop: returncode=0, wall_seconds=0.719
+ Container dashbite-test-732db3e6b2e0-simulator-1 Stopping 
+ Container dashbite-test-732db3e6b2e0-simulator-1 Stopped 
+
+Shutdown simulator: status=exited, exit=0, OOMKilled=False, FinishedAt=2026-10-01T16:43:01.932920793Z
+Shutdown daemon events: [{"Type": "container", "Action": "kill", "Actor": {"ID": "2e43b422ebb451091ea5ceac822ed9187602278b645977a93ad8dc2e27c35b9d", "Attributes": {"com.docker.compose.config-hash": "6817e69e20a2a58f07bb23c57c41e41174d34d1b933f474542e608a3e2c42563", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "simulator", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-simulator-1", "signal": "15"}}, "scope": "local", "time": 1790872981, "timeNano": 1790872981800368751}, {"Type": "container", "Action": "stop", "Actor": {"ID": "2e43b422ebb451091ea5ceac822ed9187602278b645977a93ad8dc2e27c35b9d", "Attributes": {"com.docker.compose.config-hash": "6817e69e20a2a58f07bb23c57c41e41174d34d1b933f474542e608a3e2c42563", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "simulator", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-simulator-1"}}, "scope": "local", "time": 1790872982, "timeNano": 1790872982106956543}, {"Type": "container", "Action": "die", "Actor": {"ID": "2e43b422ebb451091ea5ceac822ed9187602278b645977a93ad8dc2e27c35b9d", "Attributes": {"com.docker.compose.config-hash": "6817e69e20a2a58f07bb23c57c41e41174d34d1b933f474542e608a3e2c42563", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "simulator", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "execDuration": "122", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-simulator-1"}}, "scope": "local", "time": 1790872982, "timeNano": 1790872982111278710}]
+Shutdown simulator: daemon SIGTERM-to-die=0.311s
+PASS: clean stop of ['simulator'] in 0.719s (10s grace unchanged)
+Compose stop: returncode=0, wall_seconds=0.815
+ Container dashbite-test-732db3e6b2e0-infer-1 Stopping 
+ Container dashbite-test-732db3e6b2e0-preprocess-1 Stopping 
+ Container dashbite-test-732db3e6b2e0-train-1 Stopping 
+ Container dashbite-test-732db3e6b2e0-preprocess-1 Stopped 
+ Container dashbite-test-732db3e6b2e0-train-1 Stopped 
+ Container dashbite-test-732db3e6b2e0-infer-1 Stopped 
+
+Shutdown infer: status=exited, exit=0, OOMKilled=False, FinishedAt=2026-10-01T16:43:17.515656842Z
+Shutdown preprocess: status=exited, exit=0, OOMKilled=False, FinishedAt=2026-10-01T16:43:17.289950759Z
+Shutdown train: status=exited, exit=0, OOMKilled=False, FinishedAt=2026-10-01T16:43:17.507932509Z
+Shutdown daemon events: [{"Type": "container", "Action": "kill", "Actor": {"ID": "930a644e09d82ee5ddaaf846aa52d12e4def30cbedc0e64ffb2b132335d757e0", "Attributes": {"com.docker.compose.config-hash": "2c0259c22372ad71c4467b88637be0a39d9eaaa423af76cd932cfb26cbf15031", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "infer", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-infer-1", "signal": "15"}}, "scope": "local", "time": 1790872997, "timeNano": 1790872997011835467}, {"Type": "container", "Action": "kill", "Actor": {"ID": "b6578274b4faa9900a982ac29a441abc682137ba3a903d78bb9c3bcafae559bd", "Attributes": {"com.docker.compose.config-hash": "6f42e69afee58f1ffeffe80142e8b426e27e407cf11376b1caf10a5f1c1aabe5", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "preprocess", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-preprocess-1", "signal": "15"}}, "scope": "local", "time": 1790872997, "timeNano": 1790872997011853300}, {"Type": "container", "Action": "kill", "Actor": {"ID": "72a4605f28d6d284773308626dbeac502d0190b4278ed5ea1c1ca3327d5c5174", "Attributes": {"com.docker.compose.config-hash": "fa7738cff29b84c7af9d56826a2c7a0738f8ab975f03f227f53ea909dc76af80", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "train", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-train-1", "signal": "15"}}, "scope": "local", "time": 1790872997, "timeNano": 1790872997011937258}, {"Type": "container", "Action": "stop", "Actor": {"ID": "b6578274b4faa9900a982ac29a441abc682137ba3a903d78bb9c3bcafae559bd", "Attributes": {"com.docker.compose.config-hash": "6f42e69afee58f1ffeffe80142e8b426e27e407cf11376b1caf10a5f1c1aabe5", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "preprocess", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-preprocess-1"}}, "scope": "local", "time": 1790872997, "timeNano": 1790872997462764467}, {"Type": "container", "Action": "die", "Actor": {"ID": "b6578274b4faa9900a982ac29a441abc682137ba3a903d78bb9c3bcafae559bd", "Attributes": {"com.docker.compose.config-hash": "6f42e69afee58f1ffeffe80142e8b426e27e407cf11376b1caf10a5f1c1aabe5", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "preprocess", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "execDuration": "137", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-preprocess-1"}}, "scope": "local", "time": 1790872997, "timeNano": 1790872997467643259}, {"Type": "container", "Action": "stop", "Actor": {"ID": "72a4605f28d6d284773308626dbeac502d0190b4278ed5ea1c1ca3327d5c5174", "Attributes": {"com.docker.compose.config-hash": "fa7738cff29b84c7af9d56826a2c7a0738f8ab975f03f227f53ea909dc76af80", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "train", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-train-1"}}, "scope": "local", "time": 1790872997, "timeNano": 1790872997620268425}, {"Type": "container", "Action": "die", "Actor": {"ID": "72a4605f28d6d284773308626dbeac502d0190b4278ed5ea1c1ca3327d5c5174", "Attributes": {"com.docker.compose.config-hash": "fa7738cff29b84c7af9d56826a2c7a0738f8ab975f03f227f53ea909dc76af80", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "train", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "execDuration": "138", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-train-1"}}, "scope": "local", "time": 1790872997, "timeNano": 1790872997623781509}, {"Type": "container", "Action": "stop", "Actor": {"ID": "930a644e09d82ee5ddaaf846aa52d12e4def30cbedc0e64ffb2b132335d757e0", "Attributes": {"com.docker.compose.config-hash": "2c0259c22372ad71c4467b88637be0a39d9eaaa423af76cd932cfb26cbf15031", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "infer", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-infer-1"}}, "scope": "local", "time": 1790872997, "timeNano": 1790872997678461550}, {"Type": "container", "Action": "die", "Actor": {"ID": "930a644e09d82ee5ddaaf846aa52d12e4def30cbedc0e64ffb2b132335d757e0", "Attributes": {"com.docker.compose.config-hash": "2c0259c22372ad71c4467b88637be0a39d9eaaa423af76cd932cfb26cbf15031", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "infer", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "execDuration": "138", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-infer-1"}}, "scope": "local", "time": 1790872997, "timeNano": 1790872997682497925}, {"Type": "container", "Action": "exec_create: python -c import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=2).read()", "Actor": {"ID": "13b5420714754ab86156c55adad28495696fc1a5099934f6fc2cc98a59174091", "Attributes": {"com.docker.compose.config-hash": "1bcf0162dcd9be46d5364212da48bf37c68fe3e544f21ce552daf138ab9eddc3", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "dashboard", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "desktop.docker.io/ports/8501/tcp": "127.0.0.1:50980", "execID": "dd2ebe3838a1fd8e8f9ee3d69a0f4df4011e126356d55ab478afcf054ff3a81d", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-dashboard-1"}}, "scope": "local", "time": 1790872998, "timeNano": 1790872998725623009}, {"Type": "container", "Action": "exec_start: python -c import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=2).read()", "Actor": {"ID": "13b5420714754ab86156c55adad28495696fc1a5099934f6fc2cc98a59174091", "Attributes": {"com.docker.compose.config-hash": "1bcf0162dcd9be46d5364212da48bf37c68fe3e544f21ce552daf138ab9eddc3", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "dashboard", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "desktop.docker.io/ports/8501/tcp": "127.0.0.1:50980", "execID": "dd2ebe3838a1fd8e8f9ee3d69a0f4df4011e126356d55ab478afcf054ff3a81d", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-dashboard-1"}}, "scope": "local", "time": 1790872998, "timeNano": 1790872998726747968}, {"Type": "container", "Action": "exec_die", "Actor": {"ID": "13b5420714754ab86156c55adad28495696fc1a5099934f6fc2cc98a59174091", "Attributes": {"com.docker.compose.config-hash": "1bcf0162dcd9be46d5364212da48bf37c68fe3e544f21ce552daf138ab9eddc3", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "dashboard", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "desktop.docker.io/ports/8501/tcp": "127.0.0.1:50980", "execID": "dd2ebe3838a1fd8e8f9ee3d69a0f4df4011e126356d55ab478afcf054ff3a81d", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-dashboard-1"}}, "scope": "local", "time": 1790872998, "timeNano": 1790872998903412551}]
+Shutdown infer: daemon SIGTERM-to-die=0.671s
+Shutdown preprocess: daemon SIGTERM-to-die=0.456s
+Shutdown train: daemon SIGTERM-to-die=0.612s
+PASS: clean stop of ['infer', 'preprocess', 'train'] in 0.815s (10s grace unchanged)
+DATA_ROOT: /tmp/dashbite-verify-data
+DATA_ROOT: /tmp/dashbite-verify-data
+raw: 60 files, 3000 rows; example: /tmp/dashbite-verify-data/raw/orders_20261001_164100_861350_0000.csv
+features: 60 files, 3000 rows; example: /tmp/dashbite-verify-data/features/features_orders_20261001_164100_861350_0000.csv
+predictions: 56 files, 3000 rows; example: /tmp/dashbite-verify-data/predictions/predictions_checkpoint_20261001_164103_847946_1790872865.csv
+quality: 1 files, 60 rows; example: /tmp/dashbite-verify-data/quality/batch_quality.csv
+checkpoints: 57; example: /tmp/dashbite-verify-data/models/checkpoint_20261001_164103_847946.joblib
+                            order_id  late_probability  predicted_late          checkpoint_id
+2fb358cb-3875-428c-ad69-0ae65e63970f            0.8414               1 20261001_164103_847946
+6cdb3f59-ed0a-4481-b07a-d3f607c1daa5            0.9662               1 20261001_164103_847946
+8e67184c-e2ed-44a8-8f72-3ca480a5bbdc            0.3284               0 20261001_164103_847946
+7a49c390-4f4b-494d-a04d-0e8b3b389175            0.5847               1 20261001_164103_847946
+a1ebce18-cbbe-426a-8600-906f80983381            0.5058               1 20261001_164103_847946
+PASS: artifacts and handoffs verified
+
+ Container dashbite-test-732db3e6b2e0-simulator-run-9bc37ac3e345 Creating 
+ Container dashbite-test-732db3e6b2e0-simulator-run-9bc37ac3e345 Created 
+DATA_ROOT: /tmp/dashbite-verify-data
+DATA_ROOT: /tmp/dashbite-verify-data
+raw: 60 files, 3000 rows; example: /tmp/dashbite-verify-data/raw/orders_20261001_164100_861350_0000.csv
+features: 60 files, 3000 rows; example: /tmp/dashbite-verify-data/features/features_orders_20261001_164100_861350_0000.csv
+predictions: 56 files, 3000 rows; example: /tmp/dashbite-verify-data/predictions/predictions_checkpoint_20261001_164103_847946_1790872865.csv
+quality: 1 files, 60 rows; example: /tmp/dashbite-verify-data/quality/batch_quality.csv
+checkpoints: 57; example: /tmp/dashbite-verify-data/models/checkpoint_20261001_164103_847946.joblib
+                            order_id  late_probability  predicted_late          checkpoint_id
+2fb358cb-3875-428c-ad69-0ae65e63970f            0.8414               1 20261001_164103_847946
+6cdb3f59-ed0a-4481-b07a-d3f607c1daa5            0.9662               1 20261001_164103_847946
+8e67184c-e2ed-44a8-8f72-3ca480a5bbdc            0.3284               0 20261001_164103_847946
+7a49c390-4f4b-494d-a04d-0e8b3b389175            0.5847               1 20261001_164103_847946
+a1ebce18-cbbe-426a-8600-906f80983381            0.5058               1 20261001_164103_847946
+PASS: artifacts and handoffs verified
+PASS: saved 352 artifact checksums to /tmp/dashbite-verify-data/smoke-manifest.json
+
+Compose stop: returncode=0, wall_seconds=1.095
+ Container dashbite-test-732db3e6b2e0-dashboard-1 Stopping 
+ Container dashbite-test-732db3e6b2e0-dashboard-1 Stopped 
+
+Shutdown dashboard: status=exited, exit=0, OOMKilled=False, FinishedAt=2026-10-01T16:43:27.355182305Z
+Shutdown daemon events: [{"Type": "container", "Action": "die", "Actor": {"ID": "1b2ff8edfd2ac4ec37d48da637e290fe81688a987722ab55856eb84dbbbaec34", "Attributes": {"com.docker.compose.config-hash": "595a7d59793b351ddc8b716ccbd5f5aa73e7f7662e3e3012f0c11aa98cb268f7", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "True", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "simulator", "com.docker.compose.slug": "9bc37ac3e34592edf2d50c5ba7f3eb64be37f3f51811e947aad0457aa03d7e40", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "execDuration": "2", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-simulator-run-9bc37ac3e345"}}, "scope": "local", "time": 1790873005, "timeNano": 1790873005621406513}, {"Type": "container", "Action": "destroy", "Actor": {"ID": "1b2ff8edfd2ac4ec37d48da637e290fe81688a987722ab55856eb84dbbbaec34", "Attributes": {"com.docker.compose.config-hash": "595a7d59793b351ddc8b716ccbd5f5aa73e7f7662e3e3012f0c11aa98cb268f7", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "True", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "simulator", "com.docker.compose.slug": "9bc37ac3e34592edf2d50c5ba7f3eb64be37f3f51811e947aad0457aa03d7e40", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-simulator-run-9bc37ac3e345"}}, "scope": "local", "time": 1790873005, "timeNano": 1790873005697728221}, {"Type": "container", "Action": "kill", "Actor": {"ID": "13b5420714754ab86156c55adad28495696fc1a5099934f6fc2cc98a59174091", "Attributes": {"com.docker.compose.config-hash": "1bcf0162dcd9be46d5364212da48bf37c68fe3e544f21ce552daf138ab9eddc3", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "dashboard", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "desktop.docker.io/ports/8501/tcp": "127.0.0.1:50980", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-dashboard-1", "signal": "15"}}, "scope": "local", "time": 1790873006, "timeNano": 1790873006767486638}, {"Type": "container", "Action": "stop", "Actor": {"ID": "13b5420714754ab86156c55adad28495696fc1a5099934f6fc2cc98a59174091", "Attributes": {"com.docker.compose.config-hash": "1bcf0162dcd9be46d5364212da48bf37c68fe3e544f21ce552daf138ab9eddc3", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "dashboard", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "desktop.docker.io/ports/8501/tcp": "127.0.0.1:50980", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-dashboard-1"}}, "scope": "local", "time": 1790873007, "timeNano": 1790873007610374305}, {"Type": "container", "Action": "die", "Actor": {"ID": "13b5420714754ab86156c55adad28495696fc1a5099934f6fc2cc98a59174091", "Attributes": {"com.docker.compose.config-hash": "1bcf0162dcd9be46d5364212da48bf37c68fe3e544f21ce552daf138ab9eddc3", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "dashboard", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "desktop.docker.io/ports/8501/tcp": "127.0.0.1:50980", "execDuration": "156", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-dashboard-1"}}, "scope": "local", "time": 1790873007, "timeNano": 1790873007614916889}]
+Shutdown dashboard: daemon SIGTERM-to-die=0.847s
+PASS: clean stop of ['dashboard'] in 1.095s (10s grace unchanged)
+DATA_ROOT: /tmp/dashbite-verify-data
+unchanged: features/.done_orders_20261001_164100_861350_0000.csv
+unchanged: features/.done_orders_20261001_164102_910601_0001.csv
+unchanged: features/.done_orders_20261001_164104_937941_0002.csv
+unchanged: features/.done_orders_20261001_164106_959769_0003.csv
+unchanged: features/.done_orders_20261001_164108_974785_0004.csv
+unchanged: features/.done_orders_20261001_164110_984570_0005.csv
+unchanged: features/.done_orders_20261001_164113_002046_0006.csv
+unchanged: features/.done_orders_20261001_164115_020349_0007.csv
+unchanged: features/.done_orders_20261001_164117_035090_0008.csv
+unchanged: features/.done_orders_20261001_164119_067540_0009.csv
+unchanged: features/.done_orders_20261001_164121_089202_0010.csv
+unchanged: features/.done_orders_20261001_164123_102049_0011.csv
+unchanged: features/.done_orders_20261001_164125_141969_0012.csv
+unchanged: features/.done_orders_20261001_164127_153231_0013.csv
+unchanged: features/.done_orders_20261001_164129_247741_0014.csv
+unchanged: features/.done_orders_20261001_164131_271404_0015.csv
+unchanged: features/.done_orders_20261001_164133_281814_0016.csv
+unchanged: features/.done_orders_20261001_164135_304196_0017.csv
+unchanged: features/.done_orders_20261001_164137_318735_0018.csv
+unchanged: features/.done_orders_20261001_164139_329819_0019.csv
+unchanged: features/.done_orders_20261001_164141_336284_0020.csv
+unchanged: features/.done_orders_20261001_164143_345606_0021.csv
+unchanged: features/.done_orders_20261001_164145_370243_0022.csv
+unchanged: features/.done_orders_20261001_164147_388070_0023.csv
+unchanged: features/.done_orders_20261001_164149_404938_0024.csv
+unchanged: features/.done_orders_20261001_164151_418138_0025.csv
+unchanged: features/.done_orders_20261001_164153_425782_0026.csv
+unchanged: features/.done_orders_20261001_164155_437340_0027.csv
+unchanged: features/.done_orders_20261001_164157_444987_0028.csv
+unchanged: features/.done_orders_20261001_164159_453493_0029.csv
+unchanged: features/.done_orders_20261001_164201_467528_0030.csv
+unchanged: features/.done_orders_20261001_164203_478996_0031.csv
+unchanged: features/.done_orders_20261001_164205_490024_0032.csv
+unchanged: features/.done_orders_20261001_164207_503931_0033.csv
+unchanged: features/.done_orders_20261001_164209_530428_0034.csv
+unchanged: features/.done_orders_20261001_164211_562862_0035.csv
+unchanged: features/.done_orders_20261001_164213_592344_0036.csv
+unchanged: features/.done_orders_20261001_164215_620705_0037.csv
+unchanged: features/.done_orders_20261001_164217_640394_0038.csv
+unchanged: features/.done_orders_20261001_164219_665113_0039.csv
+unchanged: features/.done_orders_20261001_164221_677321_0040.csv
+unchanged: features/.done_orders_20261001_164223_685710_0041.csv
+unchanged: features/.done_orders_20261001_164225_696028_0042.csv
+unchanged: features/.done_orders_20261001_164227_732352_0043.csv
+unchanged: features/.done_orders_20261001_164229_787192_0044.csv
+unchanged: features/.done_orders_20261001_164231_815471_0045.csv
+unchanged: features/.done_orders_20261001_164233_834354_0046.csv
+unchanged: features/.done_orders_20261001_164235_876286_0047.csv
+unchanged: features/.done_orders_20261001_164237_911832_0048.csv
+unchanged: features/.done_orders_20261001_164239_942721_0049.csv
+unchanged: features/.done_orders_20261001_164241_969372_0050.csv
+unchanged: features/.done_orders_20261001_164243_988395_0051.csv
+unchanged: features/.done_orders_20261001_164246_014276_0052.csv
+unchanged: features/.done_orders_20261001_164248_029750_0053.csv
+unchanged: features/.done_orders_20261001_164250_064975_0054.csv
+unchanged: features/.done_orders_20261001_164252_080919_0055.csv
+unchanged: features/.done_orders_20261001_164254_111891_0056.csv
+unchanged: features/.done_orders_20261001_164256_154342_0057.csv
+unchanged: features/.done_orders_20261001_164258_171850_0058.csv
+unchanged: features/.done_orders_20261001_164300_231476_0059.csv
+unchanged: features/features_orders_20261001_164100_861350_0000.csv
+unchanged: features/features_orders_20261001_164102_910601_0001.csv
+unchanged: features/features_orders_20261001_164104_937941_0002.csv
+unchanged: features/features_orders_20261001_164106_959769_0003.csv
+unchanged: features/features_orders_20261001_164108_974785_0004.csv
+unchanged: features/features_orders_20261001_164110_984570_0005.csv
+unchanged: features/features_orders_20261001_164113_002046_0006.csv
+unchanged: features/features_orders_20261001_164115_020349_0007.csv
+unchanged: features/features_orders_20261001_164117_035090_0008.csv
+unchanged: features/features_orders_20261001_164119_067540_0009.csv
+unchanged: features/features_orders_20261001_164121_089202_0010.csv
+unchanged: features/features_orders_20261001_164123_102049_0011.csv
+unchanged: features/features_orders_20261001_164125_141969_0012.csv
+unchanged: features/features_orders_20261001_164127_153231_0013.csv
+unchanged: features/features_orders_20261001_164129_247741_0014.csv
+unchanged: features/features_orders_20261001_164131_271404_0015.csv
+unchanged: features/features_orders_20261001_164133_281814_0016.csv
+unchanged: features/features_orders_20261001_164135_304196_0017.csv
+unchanged: features/features_orders_20261001_164137_318735_0018.csv
+unchanged: features/features_orders_20261001_164139_329819_0019.csv
+unchanged: features/features_orders_20261001_164141_336284_0020.csv
+unchanged: features/features_orders_20261001_164143_345606_0021.csv
+unchanged: features/features_orders_20261001_164145_370243_0022.csv
+unchanged: features/features_orders_20261001_164147_388070_0023.csv
+unchanged: features/features_orders_20261001_164149_404938_0024.csv
+unchanged: features/features_orders_20261001_164151_418138_0025.csv
+unchanged: features/features_orders_20261001_164153_425782_0026.csv
+unchanged: features/features_orders_20261001_164155_437340_0027.csv
+unchanged: features/features_orders_20261001_164157_444987_0028.csv
+unchanged: features/features_orders_20261001_164159_453493_0029.csv
+unchanged: features/features_orders_20261001_164201_467528_0030.csv
+unchanged: features/features_orders_20261001_164203_478996_0031.csv
+unchanged: features/features_orders_20261001_164205_490024_0032.csv
+unchanged: features/features_orders_20261001_164207_503931_0033.csv
+unchanged: features/features_orders_20261001_164209_530428_0034.csv
+unchanged: features/features_orders_20261001_164211_562862_0035.csv
+unchanged: features/features_orders_20261001_164213_592344_0036.csv
+unchanged: features/features_orders_20261001_164215_620705_0037.csv
+unchanged: features/features_orders_20261001_164217_640394_0038.csv
+unchanged: features/features_orders_20261001_164219_665113_0039.csv
+unchanged: features/features_orders_20261001_164221_677321_0040.csv
+unchanged: features/features_orders_20261001_164223_685710_0041.csv
+unchanged: features/features_orders_20261001_164225_696028_0042.csv
+unchanged: features/features_orders_20261001_164227_732352_0043.csv
+unchanged: features/features_orders_20261001_164229_787192_0044.csv
+unchanged: features/features_orders_20261001_164231_815471_0045.csv
+unchanged: features/features_orders_20261001_164233_834354_0046.csv
+unchanged: features/features_orders_20261001_164235_876286_0047.csv
+unchanged: features/features_orders_20261001_164237_911832_0048.csv
+unchanged: features/features_orders_20261001_164239_942721_0049.csv
+unchanged: features/features_orders_20261001_164241_969372_0050.csv
+unchanged: features/features_orders_20261001_164243_988395_0051.csv
+unchanged: features/features_orders_20261001_164246_014276_0052.csv
+unchanged: features/features_orders_20261001_164248_029750_0053.csv
+unchanged: features/features_orders_20261001_164250_064975_0054.csv
+unchanged: features/features_orders_20261001_164252_080919_0055.csv
+unchanged: features/features_orders_20261001_164254_111891_0056.csv
+unchanged: features/features_orders_20261001_164256_154342_0057.csv
+unchanged: features/features_orders_20261001_164258_171850_0058.csv
+unchanged: features/features_orders_20261001_164300_231476_0059.csv
+unchanged: models/checkpoint_20261001_164103_847946.joblib
+unchanged: models/checkpoint_20261001_164105_888800.joblib
+unchanged: models/checkpoint_20261001_164107_925898.joblib
+unchanged: models/checkpoint_20261001_164109_966331.joblib
+unchanged: models/checkpoint_20261001_164112_044531.joblib
+unchanged: models/checkpoint_20261001_164114_109137.joblib
+unchanged: models/checkpoint_20261001_164116_159896.joblib
+unchanged: models/checkpoint_20261001_164118_231515.joblib
+unchanged: models/checkpoint_20261001_164120_274447.joblib
+unchanged: models/checkpoint_20261001_164122_323771.joblib
+unchanged: models/checkpoint_20261001_164124_446271.joblib
+unchanged: models/checkpoint_20261001_164126_500313.joblib
+unchanged: models/checkpoint_20261001_164128_647655.joblib
+unchanged: models/checkpoint_20261001_164130_719189.joblib
+unchanged: models/checkpoint_20261001_164132_764231.joblib
+unchanged: models/checkpoint_20261001_164135_152050.joblib
+unchanged: models/checkpoint_20261001_164137_202125.joblib
+unchanged: models/checkpoint_20261001_164139_260082.joblib
+unchanged: models/checkpoint_20261001_164141_345845.joblib
+unchanged: models/checkpoint_20261001_164143_416502.joblib
+unchanged: models/checkpoint_20261001_164145_489539.joblib
+unchanged: models/checkpoint_20261001_164147_593475.joblib
+unchanged: models/checkpoint_20261001_164149_685737.joblib
+unchanged: models/checkpoint_20261001_164151_775426.joblib
+unchanged: models/checkpoint_20261001_164153_873023.joblib
+unchanged: models/checkpoint_20261001_164155_954095.joblib
+unchanged: models/checkpoint_20261001_164158_052932.joblib
+unchanged: models/checkpoint_20261001_164200_155585.joblib
+unchanged: models/checkpoint_20261001_164202_235829.joblib
+unchanged: models/checkpoint_20261001_164204_328373.joblib
+unchanged: models/checkpoint_20261001_164206_463471.joblib
+unchanged: models/checkpoint_20261001_164208_650919.joblib
+unchanged: models/checkpoint_20261001_164210_885372.joblib
+unchanged: models/checkpoint_20261001_164213_056625.joblib
+unchanged: models/checkpoint_20261001_164215_128890.joblib
+unchanged: models/checkpoint_20261001_164217_239743.joblib
+unchanged: models/checkpoint_20261001_164219_397511.joblib
+unchanged: models/checkpoint_20261001_164221_524495.joblib
+unchanged: models/checkpoint_20261001_164223_641930.joblib
+unchanged: models/checkpoint_20261001_164226_028410.joblib
+unchanged: models/checkpoint_20261001_164228_194001.joblib
+unchanged: models/checkpoint_20261001_164230_298574.joblib
+unchanged: models/checkpoint_20261001_164232_345618.joblib
+unchanged: models/checkpoint_20261001_164234_447696.joblib
+unchanged: models/checkpoint_20261001_164236_620670.joblib
+unchanged: models/checkpoint_20261001_164238_702680.joblib
+unchanged: models/checkpoint_20261001_164240_803960.joblib
+unchanged: models/checkpoint_20261001_164242_934525.joblib
+unchanged: models/checkpoint_20261001_164245_023264.joblib
+unchanged: models/checkpoint_20261001_164247_151552.joblib
+unchanged: models/checkpoint_20261001_164249_276227.joblib
+unchanged: models/checkpoint_20261001_164251_432437.joblib
+unchanged: models/checkpoint_20261001_164253_627260.joblib
+unchanged: models/checkpoint_20261001_164255_827839.joblib
+unchanged: models/checkpoint_20261001_164258_017530.joblib
+unchanged: models/checkpoint_20261001_164300_331661.joblib
+unchanged: models/checkpoint_20261001_164302_979819.joblib
+unchanged: models/metrics_20261001_164103_847946.json
+unchanged: models/metrics_20261001_164105_888800.json
+unchanged: models/metrics_20261001_164107_925898.json
+unchanged: models/metrics_20261001_164109_966331.json
+unchanged: models/metrics_20261001_164112_044531.json
+unchanged: models/metrics_20261001_164114_109137.json
+unchanged: models/metrics_20261001_164116_159896.json
+unchanged: models/metrics_20261001_164118_231515.json
+unchanged: models/metrics_20261001_164120_274447.json
+unchanged: models/metrics_20261001_164122_323771.json
+unchanged: models/metrics_20261001_164124_446271.json
+unchanged: models/metrics_20261001_164126_500313.json
+unchanged: models/metrics_20261001_164128_647655.json
+unchanged: models/metrics_20261001_164130_719189.json
+unchanged: models/metrics_20261001_164132_764231.json
+unchanged: models/metrics_20261001_164135_152050.json
+unchanged: models/metrics_20261001_164137_202125.json
+unchanged: models/metrics_20261001_164139_260082.json
+unchanged: models/metrics_20261001_164141_345845.json
+unchanged: models/metrics_20261001_164143_416502.json
+unchanged: models/metrics_20261001_164145_489539.json
+unchanged: models/metrics_20261001_164147_593475.json
+unchanged: models/metrics_20261001_164149_685737.json
+unchanged: models/metrics_20261001_164151_775426.json
+unchanged: models/metrics_20261001_164153_873023.json
+unchanged: models/metrics_20261001_164155_954095.json
+unchanged: models/metrics_20261001_164158_052932.json
+unchanged: models/metrics_20261001_164200_155585.json
+unchanged: models/metrics_20261001_164202_235829.json
+unchanged: models/metrics_20261001_164204_328373.json
+unchanged: models/metrics_20261001_164206_463471.json
+unchanged: models/metrics_20261001_164208_650919.json
+unchanged: models/metrics_20261001_164210_885372.json
+unchanged: models/metrics_20261001_164213_056625.json
+unchanged: models/metrics_20261001_164215_128890.json
+unchanged: models/metrics_20261001_164217_239743.json
+unchanged: models/metrics_20261001_164219_397511.json
+unchanged: models/metrics_20261001_164221_524495.json
+unchanged: models/metrics_20261001_164223_641930.json
+unchanged: models/metrics_20261001_164226_028410.json
+unchanged: models/metrics_20261001_164228_194001.json
+unchanged: models/metrics_20261001_164230_298574.json
+unchanged: models/metrics_20261001_164232_345618.json
+unchanged: models/metrics_20261001_164234_447696.json
+unchanged: models/metrics_20261001_164236_620670.json
+unchanged: models/metrics_20261001_164238_702680.json
+unchanged: models/metrics_20261001_164240_803960.json
+unchanged: models/metrics_20261001_164242_934525.json
+unchanged: models/metrics_20261001_164245_023264.json
+unchanged: models/metrics_20261001_164247_151552.json
+unchanged: models/metrics_20261001_164249_276227.json
+unchanged: models/metrics_20261001_164251_432437.json
+unchanged: models/metrics_20261001_164253_627260.json
+unchanged: models/metrics_20261001_164255_827839.json
+unchanged: models/metrics_20261001_164258_017530.json
+unchanged: models/metrics_20261001_164300_331661.json
+unchanged: models/metrics_20261001_164302_979819.json
+unchanged: models/train_state.json
+unchanged: predictions/predictions_checkpoint_20261001_164103_847946_1790872865.csv
+unchanged: predictions/predictions_checkpoint_20261001_164105_888800_1790872867.csv
+unchanged: predictions/predictions_checkpoint_20261001_164107_925898_1790872869.csv
+unchanged: predictions/predictions_checkpoint_20261001_164109_966331_1790872871.csv
+unchanged: predictions/predictions_checkpoint_20261001_164112_044531_1790872873.csv
+unchanged: predictions/predictions_checkpoint_20261001_164114_109137_1790872875.csv
+unchanged: predictions/predictions_checkpoint_20261001_164116_159896_1790872878.csv
+unchanged: predictions/predictions_checkpoint_20261001_164118_231515_1790872880.csv
+unchanged: predictions/predictions_checkpoint_20261001_164120_274447_1790872882.csv
+unchanged: predictions/predictions_checkpoint_20261001_164122_323771_1790872884.csv
+unchanged: predictions/predictions_checkpoint_20261001_164124_446271_1790872886.csv
+unchanged: predictions/predictions_checkpoint_20261001_164126_500313_1790872888.csv
+unchanged: predictions/predictions_checkpoint_20261001_164128_647655_1790872890.csv
+unchanged: predictions/predictions_checkpoint_20261001_164130_719189_1790872892.csv
+unchanged: predictions/predictions_checkpoint_20261001_164132_764231_1790872895.csv
+unchanged: predictions/predictions_checkpoint_20261001_164135_152050_1790872897.csv
+unchanged: predictions/predictions_checkpoint_20261001_164137_202125_1790872899.csv
+unchanged: predictions/predictions_checkpoint_20261001_164139_260082_1790872901.csv
+unchanged: predictions/predictions_checkpoint_20261001_164141_345845_1790872903.csv
+unchanged: predictions/predictions_checkpoint_20261001_164143_416502_1790872905.csv
+unchanged: predictions/predictions_checkpoint_20261001_164145_489539_1790872907.csv
+unchanged: predictions/predictions_checkpoint_20261001_164147_593475_1790872909.csv
+unchanged: predictions/predictions_checkpoint_20261001_164149_685737_1790872911.csv
+unchanged: predictions/predictions_checkpoint_20261001_164151_775426_1790872913.csv
+unchanged: predictions/predictions_checkpoint_20261001_164153_873023_1790872915.csv
+unchanged: predictions/predictions_checkpoint_20261001_164155_954095_1790872918.csv
+unchanged: predictions/predictions_checkpoint_20261001_164158_052932_1790872920.csv
+unchanged: predictions/predictions_checkpoint_20261001_164200_155585_1790872922.csv
+unchanged: predictions/predictions_checkpoint_20261001_164202_235829_1790872924.csv
+unchanged: predictions/predictions_checkpoint_20261001_164204_328373_1790872926.csv
+unchanged: predictions/predictions_checkpoint_20261001_164206_463471_1790872928.csv
+unchanged: predictions/predictions_checkpoint_20261001_164208_650919_1790872930.csv
+unchanged: predictions/predictions_checkpoint_20261001_164210_885372_1790872933.csv
+unchanged: predictions/predictions_checkpoint_20261001_164215_128890_1790872935.csv
+unchanged: predictions/predictions_checkpoint_20261001_164215_128890_1790872937.csv
+unchanged: predictions/predictions_checkpoint_20261001_164217_239743_1790872939.csv
+unchanged: predictions/predictions_checkpoint_20261001_164219_397511_1790872941.csv
+unchanged: predictions/predictions_checkpoint_20261001_164221_524495_1790872943.csv
+unchanged: predictions/predictions_checkpoint_20261001_164223_641930_1790872945.csv
+unchanged: predictions/predictions_checkpoint_20261001_164226_028410_1790872948.csv
+unchanged: predictions/predictions_checkpoint_20261001_164228_194001_1790872950.csv
+unchanged: predictions/predictions_checkpoint_20261001_164230_298574_1790872952.csv
+unchanged: predictions/predictions_checkpoint_20261001_164232_345618_1790872954.csv
+unchanged: predictions/predictions_checkpoint_20261001_164234_447696_1790872956.csv
+unchanged: predictions/predictions_checkpoint_20261001_164236_620670_1790872958.csv
+unchanged: predictions/predictions_checkpoint_20261001_164238_702680_1790872960.csv
+unchanged: predictions/predictions_checkpoint_20261001_164240_803960_1790872962.csv
+unchanged: predictions/predictions_checkpoint_20261001_164242_934525_1790872965.csv
+unchanged: predictions/predictions_checkpoint_20261001_164245_023264_1790872967.csv
+unchanged: predictions/predictions_checkpoint_20261001_164247_151552_1790872969.csv
+unchanged: predictions/predictions_checkpoint_20261001_164249_276227_1790872971.csv
+unchanged: predictions/predictions_checkpoint_20261001_164251_432437_1790872973.csv
+unchanged: predictions/predictions_checkpoint_20261001_164253_627260_1790872975.csv
+unchanged: predictions/predictions_checkpoint_20261001_164255_827839_1790872978.csv
+unchanged: predictions/predictions_checkpoint_20261001_164258_017530_1790872980.csv
+unchanged: predictions/predictions_checkpoint_20261001_164300_331661_1790872982.csv
+unchanged: quality/batch_quality.csv
+unchanged: raw/orders_20261001_164100_861350_0000.csv
+unchanged: raw/orders_20261001_164102_910601_0001.csv
+unchanged: raw/orders_20261001_164104_937941_0002.csv
+unchanged: raw/orders_20261001_164106_959769_0003.csv
+unchanged: raw/orders_20261001_164108_974785_0004.csv
+unchanged: raw/orders_20261001_164110_984570_0005.csv
+unchanged: raw/orders_20261001_164113_002046_0006.csv
+unchanged: raw/orders_20261001_164115_020349_0007.csv
+unchanged: raw/orders_20261001_164117_035090_0008.csv
+unchanged: raw/orders_20261001_164119_067540_0009.csv
+unchanged: raw/orders_20261001_164121_089202_0010.csv
+unchanged: raw/orders_20261001_164123_102049_0011.csv
+unchanged: raw/orders_20261001_164125_141969_0012.csv
+unchanged: raw/orders_20261001_164127_153231_0013.csv
+unchanged: raw/orders_20261001_164129_247741_0014.csv
+unchanged: raw/orders_20261001_164131_271404_0015.csv
+unchanged: raw/orders_20261001_164133_281814_0016.csv
+unchanged: raw/orders_20261001_164135_304196_0017.csv
+unchanged: raw/orders_20261001_164137_318735_0018.csv
+unchanged: raw/orders_20261001_164139_329819_0019.csv
+unchanged: raw/orders_20261001_164141_336284_0020.csv
+unchanged: raw/orders_20261001_164143_345606_0021.csv
+unchanged: raw/orders_20261001_164145_370243_0022.csv
+unchanged: raw/orders_20261001_164147_388070_0023.csv
+unchanged: raw/orders_20261001_164149_404938_0024.csv
+unchanged: raw/orders_20261001_164151_418138_0025.csv
+unchanged: raw/orders_20261001_164153_425782_0026.csv
+unchanged: raw/orders_20261001_164155_437340_0027.csv
+unchanged: raw/orders_20261001_164157_444987_0028.csv
+unchanged: raw/orders_20261001_164159_453493_0029.csv
+unchanged: raw/orders_20261001_164201_467528_0030.csv
+unchanged: raw/orders_20261001_164203_478996_0031.csv
+unchanged: raw/orders_20261001_164205_490024_0032.csv
+unchanged: raw/orders_20261001_164207_503931_0033.csv
+unchanged: raw/orders_20261001_164209_530428_0034.csv
+unchanged: raw/orders_20261001_164211_562862_0035.csv
+unchanged: raw/orders_20261001_164213_592344_0036.csv
+unchanged: raw/orders_20261001_164215_620705_0037.csv
+unchanged: raw/orders_20261001_164217_640394_0038.csv
+unchanged: raw/orders_20261001_164219_665113_0039.csv
+unchanged: raw/orders_20261001_164221_677321_0040.csv
+unchanged: raw/orders_20261001_164223_685710_0041.csv
+unchanged: raw/orders_20261001_164225_696028_0042.csv
+unchanged: raw/orders_20261001_164227_732352_0043.csv
+unchanged: raw/orders_20261001_164229_787192_0044.csv
+unchanged: raw/orders_20261001_164231_815471_0045.csv
+unchanged: raw/orders_20261001_164233_834354_0046.csv
+unchanged: raw/orders_20261001_164235_876286_0047.csv
+unchanged: raw/orders_20261001_164237_911832_0048.csv
+unchanged: raw/orders_20261001_164239_942721_0049.csv
+unchanged: raw/orders_20261001_164241_969372_0050.csv
+unchanged: raw/orders_20261001_164243_988395_0051.csv
+unchanged: raw/orders_20261001_164246_014276_0052.csv
+unchanged: raw/orders_20261001_164248_029750_0053.csv
+unchanged: raw/orders_20261001_164250_064975_0054.csv
+unchanged: raw/orders_20261001_164252_080919_0055.csv
+unchanged: raw/orders_20261001_164254_111891_0056.csv
+unchanged: raw/orders_20261001_164256_154342_0057.csv
+unchanged: raw/orders_20261001_164258_171850_0058.csv
+unchanged: raw/orders_20261001_164300_231476_0059.csv
+PASS: 352 original files survived container recreation unchanged
+
+2026-10-01 16:43:38.273 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+PASS: auto-enabled Streamlit render completed without blocking
+
+DATA_ROOT: /tmp/dashbite-verify-data
+FAIL: waiting for new features since manifest
+
+DATA_ROOT: /tmp/dashbite-verify-data
+FAIL: invalid training state: last_checkpoint='checkpoint_20261001_164346_194210.joblib' not in checkpoint snapshot (58 files)
+
+DATA_ROOT: /tmp/dashbite-verify-data
+FAIL: invalid training state: last_checkpoint='checkpoint_20261001_164350_482194.joblib' not in checkpoint snapshot (59 files)
+
+DATA_ROOT: /tmp/dashbite-verify-data
+New files: {'raw': 7, 'features': 7, 'checkpoints': 4, 'predictions': 4}; new prediction rows: 300
+                            order_id  late_probability  predicted_late          checkpoint_id
+48acba82-4953-475b-9422-bed43000f265            0.0677               0 20261001_164302_979819
+2ca8ab30-586e-42da-976d-579059ba1195            0.3498               0 20261001_164302_979819
+254f1b00-1140-4079-83f1-89d8b66448d9            0.2345               0 20261001_164302_979819
+14845721-9522-45bf-b28b-e559a397ab0d            0.8868               1 20261001_164302_979819
+306800d8-29a5-4b6b-886f-87965e66d9b5            0.4997               0 20261001_164302_979819
+DATA_ROOT: /tmp/dashbite-verify-data
+raw: 67 files, 3350 rows; example: /tmp/dashbite-verify-data/raw/orders_20261001_164100_861350_0000.csv
+features: 67 files, 3350 rows; example: /tmp/dashbite-verify-data/features/features_orders_20261001_164100_861350_0000.csv
+predictions: 60 files, 3300 rows; example: /tmp/dashbite-verify-data/predictions/predictions_checkpoint_20261001_164103_847946_1790872865.csv
+quality: 1 files, 67 rows; example: /tmp/dashbite-verify-data/quality/batch_quality.csv
+checkpoints: 61; example: /tmp/dashbite-verify-data/models/checkpoint_20261001_164103_847946.joblib
+                            order_id  late_probability  predicted_late          checkpoint_id
+2fb358cb-3875-428c-ad69-0ae65e63970f            0.8414               1 20261001_164103_847946
+6cdb3f59-ed0a-4481-b07a-d3f607c1daa5            0.9662               1 20261001_164103_847946
+8e67184c-e2ed-44a8-8f72-3ca480a5bbdc            0.3284               0 20261001_164103_847946
+7a49c390-4f4b-494d-a04d-0e8b3b389175            0.5847               1 20261001_164103_847946
+a1ebce18-cbbe-426a-8600-906f80983381            0.5058               1 20261001_164103_847946
+PASS: artifacts and handoffs verified
+PASS: new predictions appeared after restart
+
+BROWSER CHECK: http://127.0.0.1:50980
+Open/reload this URL in a real browser. Leave Auto-refresh (15s) checked. Observe at least two automatic updates without reloading, then leave the tab open. Type browser-verified within 180s to run the timed stop:
+Browser observer confirmed active auto-refresh; tab must remain open during stop.
+Compose stop: returncode=0, wall_seconds=1.513
+ Container dashbite-test-732db3e6b2e0-train-1 Stopping 
+ Container dashbite-test-732db3e6b2e0-simulator-1 Stopping 
+ Container dashbite-test-732db3e6b2e0-dashboard-1 Stopping 
+ Container dashbite-test-732db3e6b2e0-preprocess-1 Stopping 
+ Container dashbite-test-732db3e6b2e0-infer-1 Stopping 
+ Container dashbite-test-732db3e6b2e0-preprocess-1 Stopped 
+ Container dashbite-test-732db3e6b2e0-simulator-1 Stopped 
+ Container dashbite-test-732db3e6b2e0-infer-1 Stopped 
+ Container dashbite-test-732db3e6b2e0-train-1 Stopped 
+ Container dashbite-test-732db3e6b2e0-dashboard-1 Stopped 
+
+Shutdown dashboard: status=exited, exit=0, OOMKilled=False, FinishedAt=2026-10-01T16:45:13.831108632Z
+Shutdown infer: status=exited, exit=0, OOMKilled=False, FinishedAt=2026-10-01T16:45:13.495702965Z
+Shutdown preprocess: status=exited, exit=0, OOMKilled=False, FinishedAt=2026-10-01T16:45:13.343764673Z
+Shutdown simulator: status=exited, exit=0, OOMKilled=False, FinishedAt=2026-10-01T16:45:13.340849131Z
+Shutdown train: status=exited, exit=0, OOMKilled=False, FinishedAt=2026-10-01T16:45:13.553515132Z
+Shutdown daemon events: [{"Type": "container", "Action": "kill", "Actor": {"ID": "7dae6529843ec3ec702d2111223944f499ee419c990130dc6b2ced3e2d8b4dbd", "Attributes": {"com.docker.compose.config-hash": "6817e69e20a2a58f07bb23c57c41e41174d34d1b933f474542e608a3e2c42563", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "simulator", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-simulator-1", "signal": "15"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113046672548}, {"Type": "container", "Action": "kill", "Actor": {"ID": "8e07761c360239d8049f3d5180107f24a6efe4ab8715e8c2caf1090d2a865667", "Attributes": {"com.docker.compose.config-hash": "fa7738cff29b84c7af9d56826a2c7a0738f8ab975f03f227f53ea909dc76af80", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "train", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-train-1", "signal": "15"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113048496256}, {"Type": "container", "Action": "kill", "Actor": {"ID": "e2bfab2e8403a02af7c997b7852bfb5e94f185093b9478c09cff3ce0ba73018f", "Attributes": {"com.docker.compose.config-hash": "6f42e69afee58f1ffeffe80142e8b426e27e407cf11376b1caf10a5f1c1aabe5", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "preprocess", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-preprocess-1", "signal": "15"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113048717506}, {"Type": "container", "Action": "kill", "Actor": {"ID": "98f7aee2b84f7b18c825f92c018a2f967c72aeb6e6dfb036ca4cf657ccc589fe", "Attributes": {"com.docker.compose.config-hash": "2c0259c22372ad71c4467b88637be0a39d9eaaa423af76cd932cfb26cbf15031", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "infer", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-infer-1", "signal": "15"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113049682256}, {"Type": "container", "Action": "kill", "Actor": {"ID": "01dc8219835b2fb9dd80c44defa7d52aa37532bdc1d3486604bf4c35ccffa1a6", "Attributes": {"com.docker.compose.config-hash": "1bcf0162dcd9be46d5364212da48bf37c68fe3e544f21ce552daf138ab9eddc3", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "dashboard", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "desktop.docker.io/ports/8501/tcp": "127.0.0.1:50980", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-dashboard-1", "signal": "15"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113053442131}, {"Type": "container", "Action": "stop", "Actor": {"ID": "e2bfab2e8403a02af7c997b7852bfb5e94f185093b9478c09cff3ce0ba73018f", "Attributes": {"com.docker.compose.config-hash": "6f42e69afee58f1ffeffe80142e8b426e27e407cf11376b1caf10a5f1c1aabe5", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "preprocess", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-preprocess-1"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113543639673}, {"Type": "container", "Action": "die", "Actor": {"ID": "e2bfab2e8403a02af7c997b7852bfb5e94f185093b9478c09cff3ce0ba73018f", "Attributes": {"com.docker.compose.config-hash": "6f42e69afee58f1ffeffe80142e8b426e27e407cf11376b1caf10a5f1c1aabe5", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "preprocess", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "execDuration": "94", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-preprocess-1"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113561631715}, {"Type": "container", "Action": "stop", "Actor": {"ID": "7dae6529843ec3ec702d2111223944f499ee419c990130dc6b2ced3e2d8b4dbd", "Attributes": {"com.docker.compose.config-hash": "6817e69e20a2a58f07bb23c57c41e41174d34d1b933f474542e608a3e2c42563", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "simulator", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-simulator-1"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113596398757}, {"Type": "container", "Action": "die", "Actor": {"ID": "7dae6529843ec3ec702d2111223944f499ee419c990130dc6b2ced3e2d8b4dbd", "Attributes": {"com.docker.compose.config-hash": "6817e69e20a2a58f07bb23c57c41e41174d34d1b933f474542e608a3e2c42563", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "simulator", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "execDuration": "94", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-simulator-1"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113647491132}, {"Type": "container", "Action": "stop", "Actor": {"ID": "98f7aee2b84f7b18c825f92c018a2f967c72aeb6e6dfb036ca4cf657ccc589fe", "Attributes": {"com.docker.compose.config-hash": "2c0259c22372ad71c4467b88637be0a39d9eaaa423af76cd932cfb26cbf15031", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "infer", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-infer-1"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113792439090}, {"Type": "container", "Action": "die", "Actor": {"ID": "98f7aee2b84f7b18c825f92c018a2f967c72aeb6e6dfb036ca4cf657ccc589fe", "Attributes": {"com.docker.compose.config-hash": "2c0259c22372ad71c4467b88637be0a39d9eaaa423af76cd932cfb26cbf15031", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "infer", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "execDuration": "94", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-infer-1"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113809651840}, {"Type": "container", "Action": "stop", "Actor": {"ID": "8e07761c360239d8049f3d5180107f24a6efe4ab8715e8c2caf1090d2a865667", "Attributes": {"com.docker.compose.config-hash": "fa7738cff29b84c7af9d56826a2c7a0738f8ab975f03f227f53ea909dc76af80", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "train", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-train-1"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113905274048}, {"Type": "container", "Action": "die", "Actor": {"ID": "8e07761c360239d8049f3d5180107f24a6efe4ab8715e8c2caf1090d2a865667", "Attributes": {"com.docker.compose.config-hash": "fa7738cff29b84c7af9d56826a2c7a0738f8ab975f03f227f53ea909dc76af80", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "train", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "execDuration": "94", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-train-1"}}, "scope": "local", "time": 1790873113, "timeNano": 1790873113923692798}, {"Type": "container", "Action": "stop", "Actor": {"ID": "01dc8219835b2fb9dd80c44defa7d52aa37532bdc1d3486604bf4c35ccffa1a6", "Attributes": {"com.docker.compose.config-hash": "1bcf0162dcd9be46d5364212da48bf37c68fe3e544f21ce552daf138ab9eddc3", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "dashboard", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "desktop.docker.io/ports/8501/tcp": "127.0.0.1:50980", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-dashboard-1"}}, "scope": "local", "time": 1790873114, "timeNano": 1790873114227069882}, {"Type": "container", "Action": "die", "Actor": {"ID": "01dc8219835b2fb9dd80c44defa7d52aa37532bdc1d3486604bf4c35ccffa1a6", "Attributes": {"com.docker.compose.config-hash": "1bcf0162dcd9be46d5364212da48bf37c68fe3e544f21ce552daf138ab9eddc3", "com.docker.compose.container-number": "1", "com.docker.compose.depends_on": "", "com.docker.compose.image": "sha256:7082fdcb94a656cca09086ad1899ce16ea2b6888d50c282e85b0d9959b4d4007", "com.docker.compose.oneoff": "False", "com.docker.compose.project": "dashbite-test-732db3e6b2e0", "com.docker.compose.project.config_files": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow/docker-compose.yml", "com.docker.compose.project.environment_file": "/dev/null", "com.docker.compose.project.working_dir": "/Users/chenliu/Desktop/data engineering/IDS706-DashBite-AI-Workflow", "com.docker.compose.service": "dashboard", "com.docker.compose.version": "5.4.0", "desktop.docker.io/ports.scheme": "v2", "desktop.docker.io/ports/8501/tcp": "127.0.0.1:50980", "execDuration": "101", "exitCode": "0", "image": "dashbite-test-732db3e6b2e0:local", "name": "dashbite-test-732db3e6b2e0-dashboard-1"}}, "scope": "local", "time": 1790873114, "timeNano": 1790873114241598215}]
+Shutdown dashboard: daemon SIGTERM-to-die=1.188s
+Shutdown infer: daemon SIGTERM-to-die=0.760s
+Shutdown preprocess: daemon SIGTERM-to-die=0.513s
+Shutdown simulator: daemon SIGTERM-to-die=0.601s
+Shutdown train: daemon SIGTERM-to-die=0.875s
+PASS: clean stop of ['dashboard', 'infer', 'preprocess', 'simulator', 'train'] in 1.513s (10s grace unchanged)
+PASS: Docker shared image, health separation, handoffs, restart persistence and clean shutdown
+PASS: observer-assisted active-browser shutdown
